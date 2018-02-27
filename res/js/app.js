@@ -1,0 +1,1 @@
+var medicineBox = angular.module('medicineApp', ['ngRoute', 'toaster', 'ngAnimate']);
