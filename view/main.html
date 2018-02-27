@@ -49,58 +49,68 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error':register.error.name}">
                         <label class="col-sm-4 control-label" for="registerName">用户名：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="registerName" ng-model="register.name" title="用户名"
-                                   placeholder="请设置用户名" required>
+                                   placeholder="请设置用户名">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error':register.error.pwd}">
                         <label class="col-sm-4 control-label" for="registerPwd">设置密码：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="registerPwd"
                                    ng-model="register.pwd" title="密码"
-                                   type="password" placeholder="请设置密码" required>
+                                   type="password" placeholder="请设置密码">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error':register.error.pwdRepeat}">
                         <label class="col-sm-4 control-label" for="registerPwdRepeat">确认密码：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="registerPwdRepeat"
                                    ng-model="register.pwdRepeat" title="密码"
-                                   type="password" placeholder="请再次输入密码" required>
+                                   type="password" placeholder="请再次输入密码">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-show="register.error.correct">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-register-tip">* 两次输入密码不一致</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.email}">
                         <label class="col-sm-4 control-label" for="registerEmail">设置邮箱：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="registerEmail"
                                    ng-model="register.email" title="邮箱"
-                                   type="email" placeholder="请设置邮箱" required>
+                                   type="email" placeholder="请设置邮箱">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-show="register.error.emailFormat">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-register-tip">* 邮箱格式有误</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':register.error.phone}">
                         <label class="col-sm-4 control-label" for="registerPhone">设置手机：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="registerPhone"
                                    ng-model="register.phone" title="手机号"
-                                   type="email" placeholder="请设置手机号" required>
+                                   pattern="[0-9]*" placeholder="请设置手机号">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error':register.error.code}">
                         <label class="col-sm-4 control-label" for="registerCode">验证码：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="registerCode"
                                    ng-model="register.code" title="验证码"
-                                   type="email" placeholder="请输入手机验证码" required>
+                                   pattern="[0-9]*" placeholder="请输入手机验证码">
                             <span class="mb-span-inline btn btn-default">获取验证码</span>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-primary" ng-click="checkRegister()">提交</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
