@@ -1,0 +1,16 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+.mb-span-inline{
+    position: absolute;
+    top: 0;
+    right: 15px;
+    z-index: 2;
+    display: block;
+    height: 100%;
+    padding: 0 10px;
+    background-color: #f2f2f2;
+    line-height: 2.42857143;
+}
