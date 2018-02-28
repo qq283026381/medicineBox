@@ -1,4 +1,4 @@
-medicineBox.controller('mainCtrl', ['$scope', 'toaster', function ($scope, toaster) {
+medicineBox.controller('mainCtrl', ['$scope', 'toaster', '$interval', function ($scope, toaster, $interval) {
     //登录信息初始化
     $scope.login = {
         name: '',
@@ -23,6 +23,8 @@ medicineBox.controller('mainCtrl', ['$scope', 'toaster', function ($scope, toast
             emailFormat: false
         }
     };
+    $scope.codeInfo = '获取验证码';
+    $scope.codeBtn = false;
     /***
      * 登录验证方法
      * TODO 尚未实现后台接口，暂滞空
@@ -139,8 +141,9 @@ medicineBox.controller('mainCtrl', ['$scope', 'toaster', function ($scope, toast
                                                         /***
                                                          * 当以上监听器全部取消后，判断两次输入密码是否相同，以及邮箱格式是否合法
                                                          * 若密码相同且邮箱格式合法，则取消对确认密码和设置邮箱的监听，并对用户信息进行注册
+                                                         * TODO 需要对密码进行加密处理，尚未完成后台接口，暂滞空
                                                          */
-                                                        if (!$scope.register.error.correct&&!$scope.register.error.emailFormat) {
+                                                        if (!$scope.register.error.correct && !$scope.register.error.emailFormat) {
                                                             pwdRepeatWatcher();
                                                             emailFormatWatcher();
                                                             console.log($scope.register);
@@ -157,5 +160,25 @@ medicineBox.controller('mainCtrl', ['$scope', 'toaster', function ($scope, toast
                 })
             }
         });
+    };
+    /***
+     * 获取验证码方法
+     * @param $event 处理默认事件
+     * 点击获取验证码后，在deadline的时间周期内不允许再次点击
+     * TODO 尚未完成后台接口，暂滞空
+     */
+    $scope.getCode = function ($event) {
+        $event.preventDefault();
+        var deadline = 30;
+        $scope.codeBtn = true;
+        $scope.codeInfo = deadline + 's后重新获取';
+        $interval(function () {
+            if (deadline === 1) {
+                $scope.codeInfo = '获取验证码';
+                $scope.codeBtn = false;
+            } else {
+                $scope.codeInfo = --deadline + 's后重新获取';
+            }
+        }, 1000, deadline)
     }
 }]);
