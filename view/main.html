@@ -104,7 +104,8 @@
                             <input class="form-control" id="registerCode"
                                    ng-model="register.code" title="验证码"
                                    pattern="[0-9]*" placeholder="请输入手机验证码">
-                            <span class="mb-span-inline btn btn-default">获取验证码</span>
+                            <button class="mb-span-inline btn btn-default"
+                                  ng-click="getCode($event)" ng-disabled="codeBtn" ng-bind="codeInfo"></button>
                         </div>
                     </div>
                 </form>
