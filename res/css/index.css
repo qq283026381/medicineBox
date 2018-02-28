@@ -14,3 +14,6 @@
     background-color: #f2f2f2;
     line-height: 2.42857143;
 }
+.mb-span-inline[disabled]{
+    background-color: #fff;
+}
