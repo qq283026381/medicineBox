@@ -17,3 +17,6 @@
 .mb-span-inline[disabled]{
     background-color: #fff;
 }
+.mb-register-tip{
+    color: red;
+}
