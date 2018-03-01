@@ -1,17 +1,3 @@
-# Turn on rewrite engine
-#RewriteEngine on
-#RewriteCond %{REQUEST_FILENAME} !-d
-# More rules below
-#ErrorDocument 404 /medicineBox/index.html
-#RewriteRule ^[A-Za-z0-9/]+$ /medicineBox/index.html [NC]
-
-#RewriteEngine On
-#RewriteCond %{HTTP_HOST} ^localhost
-#RewriteCond %{REQUEST_URI} !^user\.php$
-#RewriteCond %{REQUEST_URI} \.php$
-#RewriteRule (.*)\.php$ http://localhost/medicineBox/$1/ [R]
-
-
 # 开启重写规则
 RewriteEngine On
 # 设置404页面
