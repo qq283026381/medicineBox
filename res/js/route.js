@@ -6,6 +6,12 @@ medicineBox.config(['$routeProvider', '$locationProvider', function ($routeProvi
             templateUrl: 'main.page',
             controller:'mainCtrl'
         })
+        .when('/manage',{
+            templateUrl:'manage.page'
+        })
+        .when('/diagnosis',{
+            templateUrl:'diagnosis.page'
+        })
         .otherwise({
             redirectTo: '/main'
         })
