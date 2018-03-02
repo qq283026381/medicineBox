@@ -4,13 +4,25 @@ medicineBox.config(['$routeProvider', '$locationProvider', function ($routeProvi
     $routeProvider
         .when('/main', {
             templateUrl: 'main.page',
-            controller:'mainCtrl'
+            controller: 'mainCtrl'
         })
-        .when('/manage',{
-            templateUrl:'manage.page'
+        .when('/manage', {
+            templateUrl: 'manage.page'
         })
-        .when('/diagnosis',{
-            templateUrl:'diagnosis.page'
+        .when('/diagnosis', {
+            templateUrl: 'diagnosis.page'
+        })
+        .when('/efficacy', {
+            templateUrl: 'efficacy.page'
+        })
+        .when('/recording', {
+            templateUrl: 'recording.page'
+        })
+        .when('/diet', {
+            templateUrl: 'diet.page'
+        })
+        .when('/exercise', {
+            templateUrl: 'exercise.page'
         })
         .otherwise({
             redirectTo: '/main'
