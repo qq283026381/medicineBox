@@ -7,7 +7,8 @@ medicineBox.config(['$routeProvider', '$locationProvider', function ($routeProvi
             controller: 'mainCtrl'
         })
         .when('/manage', {
-            templateUrl: 'manage.page'
+            templateUrl: 'manage.page',
+            controller:'manageCtrl'
         })
         .when('/diagnosis', {
             templateUrl: 'diagnosis.page'
