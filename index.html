@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="res/css/common/bootstrap.min.css">
     <link rel="stylesheet" href="res/css/common/font-awesome.min.css">
     <link rel="stylesheet" href="res/css/common/toaster.min.css">
+    <link rel="stylesheet" href="res/css/common/themes/pickadate/classic.css">
+    <link rel="stylesheet" href="res/css/common/themes/pickadate/classic.date.css">
+    <link rel="stylesheet" href="res/css/common/themes/pickadate/classic.time.css">
     <!--CSS-->
     <link rel="stylesheet" href="res/css/main.css">
+    <link rel="stylesheet" href="res/css/manage.css">
 </head>
 <body ng-app="medicineApp" ng-controller="indexCtrl">
 <toaster-container></toaster-container>
@@ -75,18 +79,24 @@
     <div class="row" ng-view=""></div>
 </div>
 <!--common JS-->
+<script src="res/js/common/md5.js"></script>
 <script src="res/js/common/angular.min.js"></script>
 <script src="res/js/common/angular-route.min.js"></script>
 <script src="res/js/common/angular-animate.min.js"></script>
 <script src="res/js/common/toaster.min.js"></script>
 <script src="res/js/common/jquery.min.js"></script>
 <script src="res/js/common/bootstrap.min.js"></script>
+<script src="res/js/common/picker.js"></script>
+<script src="res/js/common/picker.date.js"></script>
+<script src="res/js/common/picker.time.js"></script>
+<script src="res/js/common/picker-translator-zh_CN.js"></script>
 <!--config JS-->
 <script src="res/js/app.js"></script>
 <script src="res/js/route.js"></script>
 <!--controllers-->
 <script src="res/js/controller/indexController.js"></script>
 <script src="res/js/controller/mainController.js"></script>
+<script src="res/js/controller/manageController.js"></script>
 <!--service-->
 <script src="res/js/service/loginService.js"></script>
 </body>
