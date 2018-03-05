@@ -1,4 +1,4 @@
-medicineBox.controller('loginCtrl', ['$scope', 'toaster', '$interval', 'loginService','$window', function ($scope, toaster, $interval, loginService,$window) {
+medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 'loginService', '$window', function ($scope, $http, toaster, $interval, loginService, $window) {
     //登录信息初始化
     $scope.login = {
         name: '',
@@ -27,12 +27,23 @@ medicineBox.controller('loginCtrl', ['$scope', 'toaster', '$interval', 'loginSer
     $scope.codeBtn = false;
     /***
      * 登录验证方法
-     * TODO 尚未实现后台接口，暂滞空
      */
     $scope.checkLogin = function () {
-        loginService.setLoginSession($scope.login.name);
-        //jumpTo('index.html');
-        $window.location.href='main'
+        $scope.login.pwd = md5($scope.login.pwd);
+        $http.post('Login.do', $scope.login).then(function (t) {
+            $scope.login.pwd = '';
+            if (t.data.token) {
+                localStorage.setItem('authorization', t.data.token);
+                localStorage.setItem('jti', t.data.jti);
+                toaster.pop('success', '恭喜', '登录成功');
+
+                setTimeout(function () {
+                    $window.location.href = 'main';
+                }, 500);
+            } else {
+                toaster.pop('error', '抱歉', t.data.data + '或密码填写有误');
+            }
+        });
     };
     /***
      * 监听确认密码的输入情况
