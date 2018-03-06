@@ -1,3 +1,23 @@
+var token = localStorage.getItem('authorization')||'';
+var jti = localStorage.getItem('jti')||'';
+$.ajax({
+    url: 'ValidateTime.do',
+    method: 'post',
+    async: false,
+    data: {
+        'token': token,
+        'jti': jti
+    },
+    dataType: 'json',
+    success: function (data) {
+        if (data.result === 'true') {
+            window.location.href = 'main';
+        }
+    },
+    error: function (jqXHR) {
+        console.log(jqXHR);
+    }
+});
 medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 'loginService', '$window', function ($scope, $http, toaster, $interval, loginService, $window) {
     //登录信息初始化
     $scope.login = {
@@ -20,7 +40,8 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             phone: false,
             code: false,
             correct: false,
-            emailFormat: false
+            emailFormat: false,
+            phoneFormat: false
         }
     };
     $scope.codeInfo = '获取验证码';
@@ -29,21 +50,27 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
      * 登录验证方法
      */
     $scope.checkLogin = function () {
-        $scope.login.pwd = md5($scope.login.pwd);
-        $http.post('Login.do', $scope.login).then(function (t) {
-            $scope.login.pwd = '';
-            if (t.data.token) {
-                localStorage.setItem('authorization', t.data.token);
-                localStorage.setItem('jti', t.data.jti);
-                toaster.pop('success', '恭喜', '登录成功');
-
-                setTimeout(function () {
-                    $window.location.href = 'main';
-                }, 500);
-            } else {
-                toaster.pop('error', '抱歉', t.data.data + '或密码填写有误');
-            }
-        });
+        if ($scope.login.name === '' || angular.isUndefined($scope.login.name)) {
+            toaster.pop('error', '抱歉', '请输入用户名');
+        } else if ($scope.login.pwd === '' || angular.isUndefined($scope.login.pwd)) {
+            toaster.pop('error', '抱歉', '请输入密码');
+        } else {
+            console.log($scope.login);
+            $scope.login.pwd = md5($scope.login.pwd);
+            $http.post('Login.do', $scope.login).then(function (t) {
+                $scope.login.pwd = '';
+                if (t.data.token) {
+                    localStorage.setItem('authorization', t.data.token);
+                    localStorage.setItem('jti', t.data.jti);
+                    toaster.pop('success', '恭喜', '登录成功');
+                    setTimeout(function () {
+                        $window.location.href = 'main';
+                    }, 1000);
+                } else {
+                    toaster.pop('error', '抱歉', t.data.data + '或密码填写有误');
+                }
+            });
+        }
     };
     /***
      * 监听确认密码的输入情况
@@ -77,6 +104,23 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             }
         }
     });
+    /***
+     * 监听手机号输入情况
+     * 当手机号位数输入有误时，弹出错误提示
+     * 当手机号位数为11位时，取消错误提示
+     */
+    var phoneFormatWatcher = $scope.$watch('register.phone', function (newValue) {
+        if ($scope.register.phone !== '') {
+            if (newValue.length !== 11) {
+                $scope.register.error.phoneFormat = true;
+                $scope.register.error.phone = true;
+            } else {
+                $scope.register.error.phoneFormat = false;
+                $scope.register.error.phone = false;
+            }
+
+        }
+    })
     /***
      * 注册方法
      * 对用户输入内容进行内容和格式的判断后对用户进行注册
@@ -153,13 +197,14 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
                                                         $scope.register.error.code = false;
                                                         registerCodeWatcher();
                                                         /***
-                                                         * 当以上监听器全部取消后，判断两次输入密码是否相同，以及邮箱格式是否合法
-                                                         * 若密码相同且邮箱格式合法，则取消对确认密码和设置邮箱的监听，并对用户信息进行注册
+                                                         * 当以上监听器全部取消后，判断两次输入密码是否相同、邮箱格式是否合法以及手机号格式输入是否合法
+                                                         * 若密码相同、邮箱格式合法且手机号输入合法，则取消对确认密码、设置邮箱和手机号输入的监听，并对用户信息进行注册
                                                          * TODO 需要对密码进行加密处理，尚未完成后台接口，暂滞空
                                                          */
-                                                        if (!$scope.register.error.correct && !$scope.register.error.emailFormat) {
+                                                        if (!$scope.register.error.correct && !$scope.register.error.emailFormat && !$scope.register.error.phoneFormat) {
                                                             pwdRepeatWatcher();
                                                             emailFormatWatcher();
+                                                            phoneFormatWatcher();
                                                             console.log($scope.register);
                                                         }
                                                     }
@@ -178,21 +223,51 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
     /***
      * 获取验证码方法
      * @param $event 处理默认事件
+     * 对手机号输入进行判断，若未输入11位手机号则弹出错误提示
      * 点击获取验证码后，在deadline的时间周期内不允许再次点击
      * TODO 尚未完成后台接口，暂滞空
      */
     $scope.getCode = function ($event) {
         $event.preventDefault();
-        var deadline = 30;
-        $scope.codeBtn = true;
-        $scope.codeInfo = deadline + 's后重新获取';
-        $interval(function () {
-            if (deadline === 1) {
-                $scope.codeInfo = '获取验证码';
-                $scope.codeBtn = false;
-            } else {
-                $scope.codeInfo = --deadline + 's后重新获取';
+        if ($scope.register.phone !== '' && !angular.isUndefined($scope.register.phone)) {
+            var deadline = 30;
+            $scope.codeBtn = true;
+            $scope.codeInfo = deadline + 's后重新获取';
+            $interval(function () {
+                if (deadline === 1) {
+                    $scope.codeInfo = '获取验证码';
+                    $scope.codeBtn = false;
+                } else {
+                    $scope.codeInfo = --deadline + 's后重新获取';
+                }
+            }, 1000, deadline)
+        } else {
+            $scope.register.error.phone = true;
+            toaster.pop('error', '', '请先输入手机号');
+        }
+    };
+    /***
+     * 初始化登录信息方法
+     */
+    $scope.initRegister=function () {
+        $scope.register = {
+            name: '',
+            pwd: '',
+            pwdRepeat: '',
+            email: '',
+            phone: '',
+            code: '',
+            error: {
+                name: false,
+                pwd: false,
+                pwdRepeat: false,
+                email: false,
+                phone: false,
+                code: false,
+                correct: false,
+                emailFormat: false,
+                phoneFormat: false
             }
-        }, 1000, deadline)
-    }
+        };
+    };
 }]);
