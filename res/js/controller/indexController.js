@@ -1,8 +1,24 @@
-var login = localStorage.login;
-if (login === '' || typeof(login) === 'undefined') {
-    alert('请先登录');
-    window.location.href = 'login.html'
-}
+var token = localStorage.getItem('authorization')||'';
+var jti = localStorage.getItem('jti')||'';
+$.ajax({
+    url: 'ValidateTime.do',
+    method: 'post',
+    async: false,
+    data: {
+        'token': token,
+        'jti': jti
+    },
+    dataType: 'json',
+    success: function (data) {
+        if (data.result !== 'true') {
+            alert('登录失效，请重新登陆');
+            window.location.href = 'login.html';
+        }
+    },
+    error: function (jqXHR) {
+        console.log(jqXHR);
+    }
+});
 $(document).on('click', function (e) {
     var btn = $('#mb-navbar-btn');
     if (!btn.hasClass('collapsed')) {
