@@ -1,30 +1,3 @@
-/***
- * 5分钟检查一次登录状态
- */
-setInterval(function () {
-    var token = localStorage.getItem('authorization') || '';
-    var jti = localStorage.getItem('jti') || '';
-    $.ajax({
-        url: 'ValidateTime.do',
-        method: 'post',
-        async: false,
-        data: {
-            'token': token,
-            'jti': jti
-        },
-        dataType: 'json',
-        success: function (data) {
-            if (data.result !== 'true') {
-                alert('登录失效，请重新登陆');
-                window.location.href = 'login.html';
-            }
-        },
-        error: function (jqXHR) {
-            console.log(jqXHR);
-        }
-    });
-}, 300000);
-
 $(document).on('click', function (e) {
     var btn = $('#mb-navbar-btn');
     if (!btn.hasClass('collapsed')) {
@@ -34,6 +7,13 @@ $(document).on('click', function (e) {
     }
 });
 medicineBox.controller('indexCtrl', ['$scope', 'loginService', '$window', function ($scope, loginService, $window) {
+    loginService.checkTime();
+    /**
+     * 5分钟检查一次登录状态
+     */
+    setInterval(function () {
+        loginService.checkTime();
+    }, 300000);
     if (($window.location.pathname.split('/')[2]) === 'main' || ($window.location.pathname.split('/')[2]) === '') {
         $scope.currentPage = '';
         sessionStorage.page = '';
