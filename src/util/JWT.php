@@ -26,28 +26,33 @@ class JWT
         $tokens = explode('.', $jwt);
 
         if (count($tokens) != 3) {
-            return 'token不完整';
+            //return 'token不完整';
+            return 1;
         }
         list($header64, $payload64, $sign) = $tokens;
 
         $header = json_decode(base64_decode($header64), JSON_OBJECT_AS_ARRAY);
         if (empty($header['alg'])) {
-            return 'token 加密算法不正确';
+            return 2;
+            //return 'token加密算法不正确';
         }
 
         if (self::signature($header64 . '.' . $payload64, $key, $header['alg']) !== $sign) {
-            return '签名不正确';
+            return 3;
+            //return '签名不正确';
         }
 
         $payload = json_decode(base64_decode($payload64), JSON_OBJECT_AS_ARRAY);
 
         $time = $_SERVER['REQUEST_TIME'];
         if (isset($payload['iat']) && $payload['iat'] > $time) {
-            return 'token创建时间有误';
+            return 4;
+            //return 'token创建时间有误';
         }
 
         if (isset($payload['exp']) && $payload['exp'] < $time) {
-            return 'token过期';
+            return 5;
+            //return 'token过期';
         }
 
         return $payload;
