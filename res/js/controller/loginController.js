@@ -1,23 +1,3 @@
-var token = localStorage.getItem('authorization')||'';
-var jti = localStorage.getItem('jti')||'';
-$.ajax({
-    url: 'ValidateTime.do',
-    method: 'post',
-    async: false,
-    data: {
-        'token': token,
-        'jti': jti
-    },
-    dataType: 'json',
-    success: function (data) {
-        if (data.result === 'true') {
-            window.location.href = 'main';
-        }
-    },
-    error: function (jqXHR) {
-        console.log(jqXHR);
-    }
-});
 medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 'loginService', '$window', function ($scope, $http, toaster, $interval, loginService, $window) {
     //登录信息初始化
     $scope.login = {
@@ -46,6 +26,7 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
     };
     $scope.codeInfo = '获取验证码';
     $scope.codeBtn = false;
+    loginService.checkLoginStatus();
     /***
      * 登录验证方法
      */
