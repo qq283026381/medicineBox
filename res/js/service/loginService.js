@@ -16,9 +16,6 @@ medicineBox.service('loginService', [function () {
                     alert('登录失效，请重新登陆');
                     window.location.href = 'login.html';
                 }
-            },
-            error: function (jqXHR) {
-                console.log(jqXHR);
             }
         });
     };
@@ -38,10 +35,11 @@ medicineBox.service('loginService', [function () {
                 if (data.result === 'true') {
                     window.location.href = 'main';
                 }
-            },
-            error: function (jqXHR) {
-                console.log(jqXHR);
             }
         });
+    };
+    this.logout = function () {
+        localStorage.removeItem('authorization');
+        localStorage.removeItem('jti');
     }
 }]);
