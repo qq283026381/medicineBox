@@ -6,7 +6,7 @@ $(document).on('click', function (e) {
         }
     }
 });
-medicineBox.controller('indexCtrl', ['$scope', 'loginService', '$window', function ($scope, loginService, $window) {
+medicineBox.controller('indexCtrl', ['$scope', 'loginService', '$window', 'toaster', function ($scope, loginService, $window, toaster) {
     loginService.checkTime();
     /**
      * 5分钟检查一次登录状态
@@ -25,5 +25,12 @@ medicineBox.controller('indexCtrl', ['$scope', 'loginService', '$window', functi
         if ($(window).width() <= 768) {
             $('#mb-navbar-btn').click();
         }
+    };
+    $scope.logout = function () {
+        loginService.logout();
+        toaster.pop('info', '', '注销成功');
+        setTimeout(function () {
+            window.location.href = 'login.html';
+        }, 500);
     }
 }]);
