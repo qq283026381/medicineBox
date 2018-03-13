@@ -35,4 +35,6 @@ if ($token != '' && $jti != '') {
             break;
     }
     echo json_encode($result);
+} else {
+    echo '{"result":"false"}';
 }
