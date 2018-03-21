@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 require_once '../util/Mysql.php';
-require_once '../model/DiseaseModel.php';
+require_once '../model/DiagnosisModel.php';
 require_once '../interface/IDiagnosis.php';
 
 class DiagnosisImpl implements IDiagnosis
