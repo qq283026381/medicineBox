@@ -9,4 +9,6 @@
 interface ILogin
 {
     public function checkLoginInfo($user);
+    public function register($user);
+    public function checkUser($name);
 }
