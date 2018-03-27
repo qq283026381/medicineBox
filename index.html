@@ -25,60 +25,66 @@
 <div class="container">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button"
-                        id="mb-navbar-btn"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#mb-navbar"
-                        aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a ng-click="changeNavBar('')"
-                   class="navbar-brand" href="main">MBS</a>
-            </div>
-            <div class="collapse navbar-collapse" id="mb-navbar">
-                <ul class="nav navbar-nav">
-                    <li ng-class="{'active':currentPage=='manage'}"
-                        role="presentation" ng-click="changeNavBar('manage')">
-                        <a href="manage">药品管理</a>
-                    </li>
-                    <li ng-class="{'active':currentPage=='diagnosis'}" ng-click="changeNavBar('diagnosis')"
-                        role="presentation">
-                        <a href="diagnosis">自助诊断</a>
-                    </li>
-                    <li ng-class="{'active':currentPage=='efficacy'}" ng-click="changeNavBar('efficacy')"
-                        role="presentation">
-                        <a href="efficacy">药效普及</a>
-                    </li>
-                    <li ng-class="{'active':currentPage=='recording'}" ng-click="changeNavBar('recording')"
-                        role="presentation">
-                        <a href="recording">体检记录</a>
-                    </li>
-                    <li ng-class="{'active':currentPage=='diet'}" ng-click="changeNavBar('diet')"
-                        role="presentation">
-                        <a href="diet">健康饮食</a>
-                    </li>
-                    <li ng-class="{'active':currentPage=='exercise'}" ng-click="changeNavBar('exercise')"
-                        role="presentation">
-                        <a href="exercise">康复锻炼</a>
-                    </li>
-                    <li role="presentation" ng-click="logout()">
-                        <a href="javascript:">退出登录</a>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="navbar-header">
+                        <button type="button"
+                                id="mb-navbar-btn"
+                                class="navbar-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#mb-navbar"
+                                aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a ng-click="changeNavBar('')"
+                           class="navbar-brand" href="main">MBS</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="mb-navbar">
+                        <ul class="nav navbar-nav">
+                            <li ng-class="{'active':currentPage=='manage'}"
+                                role="presentation" ng-click="changeNavBar('manage')">
+                                <a href="manage">药品管理</a>
+                            </li>
+                            <li ng-class="{'active':currentPage=='diagnosis'}" ng-click="changeNavBar('diagnosis')"
+                                role="presentation">
+                                <a href="diagnosis">自助诊断</a>
+                            </li>
+                            <li ng-class="{'active':currentPage=='efficacy'}" ng-click="changeNavBar('efficacy')"
+                                role="presentation">
+                                <a href="efficacy">药效普及</a>
+                            </li>
+                            <li ng-class="{'active':currentPage=='recording'}" ng-click="changeNavBar('recording')"
+                                role="presentation">
+                                <a href="recording">体检记录</a>
+                            </li>
+                            <li ng-class="{'active':currentPage=='diet'}" ng-click="changeNavBar('diet')"
+                                role="presentation">
+                                <a href="diet">健康饮食</a>
+                            </li>
+                            <li ng-class="{'active':currentPage=='exercise'}" ng-click="changeNavBar('exercise')"
+                                role="presentation">
+                                <a href="exercise">康复锻炼</a>
+                            </li>
+                            <li role="presentation" ng-click="logout()">
+                                <a href="javascript:">退出登录</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
     <div class="row">
-        <img class="mb-banner" src="res/img/banner.jpg" alt="">
+        <div class="col-sm-12">
+            <img class="mb-banner" src="res/img/banner.jpg" alt="">
+        </div>
     </div>
 
 
-    <div class="row" ng-view=""></div>
+    <div ng-view=""></div>
 </div>
 <!--common JS-->
 <script src="res/js/common/md5.js"></script>
