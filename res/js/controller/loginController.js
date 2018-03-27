@@ -21,7 +21,8 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             code: false,
             correct: false,
             emailFormat: false,
-            phoneFormat: false
+            phoneFormat: false,
+            nameFormat: false
         }
     };
     $scope.codeInfo = '获取验证码';
@@ -101,7 +102,24 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             }
 
         }
-    })
+    });
+    /***
+     * 监听用户名输入情况
+     * 当用户名位数输入有误或者输入符号时，弹出错误提示
+     * 当用户名输入位数为3-18位且不含符号时，取消错误提示
+     */
+    var nameFormatWatcher = $scope.$watch('register.name', function (newValue) {
+        var pattern = new RegExp('^[a-zA-Z0-9]{3,18}$');
+        if ($scope.register.name !== '') {
+            if (newValue.length < 3 || newValue.length > 18 || !pattern.test(newValue)) {
+                $scope.register.error.nameFormat = true;
+                $scope.register.error.name = true;
+            } else {
+                $scope.register.error.nameFormat = false;
+                $scope.register.error.name = false;
+            }
+        }
+    });
     /***
      * 注册方法
      * 对用户输入内容进行内容和格式的判断后对用户进行注册
@@ -116,7 +134,9 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
                 $scope.register.error.name = true;
                 toaster.pop('error', '', '请输入用户名');
             } else {
-                $scope.register.error.name = false;
+                if(!$scope.register.error.nameFormat){
+                    $scope.register.error.name = false;
+                }
                 registerNameWatcher();
                 /***
                  * 监听用户是否输入设置密码
@@ -182,11 +202,18 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
                                                          * 若密码相同、邮箱格式合法且手机号输入合法，则取消对确认密码、设置邮箱和手机号输入的监听，并对用户信息进行注册
                                                          * TODO 需要对密码进行加密处理，尚未完成后台接口，暂滞空
                                                          */
-                                                        if (!$scope.register.error.correct && !$scope.register.error.emailFormat && !$scope.register.error.phoneFormat) {
+                                                        if (!$scope.register.error.correct &&
+                                                            !$scope.register.error.emailFormat &&
+                                                            !$scope.register.error.phoneFormat &&
+                                                            !$scope.register.error.nameFormat) {
                                                             pwdRepeatWatcher();
                                                             emailFormatWatcher();
                                                             phoneFormatWatcher();
+                                                            nameFormatWatcher();
                                                             console.log($scope.register);
+                                                            $http.post('Register.do', $scope.register).then(function (t) {
+                                                                console.log(t);
+                                                            })
                                                         }
                                                     }
                                                 })
@@ -230,7 +257,7 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
     /***
      * 初始化登录信息方法
      */
-    $scope.initRegister=function () {
+    $scope.initRegister = function () {
         $scope.register = {
             name: '',
             pwd: '',
