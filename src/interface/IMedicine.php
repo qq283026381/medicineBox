@@ -8,4 +8,5 @@
 interface IMedicine{
     public function getAllMedicine($user);
     public function addMedicine($medicine);
+    public function updateMedicine($medicine);
 }
