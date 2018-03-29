@@ -37,13 +37,10 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
         } else if ($scope.login.pwd === '' || angular.isUndefined($scope.login.pwd)) {
             toaster.pop('error', '抱歉', '请输入密码');
         } else {
-            console.log($scope.login);
             $scope.login.pwd = md5($scope.login.pwd);
             $http.post('Login.do', $scope.login).then(function (t) {
                 $scope.login.pwd = '';
-                if (t.data.token) {
-                    localStorage.setItem('authorization', t.data.token);
-                    localStorage.setItem('jti', t.data.jti);
+                if (loginService.getCookie('mbs')) {
                     toaster.pop('success', '恭喜', '登录成功');
                     setTimeout(function () {
                         $window.location.href = 'main';
@@ -51,6 +48,7 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
                 } else {
                     toaster.pop('error', '抱歉', t.data.data + '或密码填写有误');
                 }
+
             });
         }
     };
