@@ -1,0 +1,258 @@
+<div class="row">
+    <div class="col-sm-3">
+        <button data-toggle="modal"
+                data-target="#add"
+                class="btn btn-info mb-add-btn"
+                ng-click="initAddItem()">添加药品
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="mb-table text-center table table-bordered table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>药品名称</th>
+                <th>药品编号</th>
+                <th>生产日期</th>
+                <th>有效期</th>
+                <th>保质期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in medicine" ng-class="{'warning':item.status=='warning','danger':item.status=='expired'}">
+                <td>{{$index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.number}}</td>
+                <td>{{item.productionDate}}</td>
+                <td>{{item.validity}}</td>
+                <td>{{item.deadline}}</td>
+                <td>
+                    <span class="fa fa-search operation operation-search"
+                          title="查看"
+                          data-toggle="modal"
+                          data-target="#search"
+                          ng-click="setSearchItem($index)"></span>
+                    <span class="fa fa-pencil-square-o operation operation-edit"
+                          title="编辑"
+                          data-toggle="modal"
+                          data-target="#edit"
+                          ng-click="setEditItem($index)"></span>
+                    <span class="fa fa-times operation operation-remove"
+                          title="删除"
+                          ng-click="deleteMedicine($index)"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="modal fade" id="add"
+             tabindex="-1" role="dialog"
+             aria-labelledby="addLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title" id="addLabel">新增</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group" ng-class="{'has-error':error.add.name}">
+                                <label class="col-sm-4 control-label" for="addName">药品名称：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="addName" ng-model="addItem.name"
+                                           title="药品名称"
+                                           placeholder="请设置药品名称">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.add.date}">
+                                <label class="col-sm-4 control-label" for="addDate">生产日期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="addDate"
+                                           ng-model="addItem.productionDate" title="生产日期"
+                                           placeholder="请设置生产日期">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.add.validity}">
+                                <label class="col-sm-4 control-label" for="addValidity">有效期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="addValidity"
+                                           ng-model="addItem.validity" title="有效期"
+                                           type="number" min="0" placeholder="请设置有效期">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.add.number}">
+                                <label class="col-sm-4 control-label" for="addNumber">药品编号：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="addNumber" type="number"
+                                           ng-model="addItem.number" title="药品编号"
+                                           placeholder="请设置药品编号">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.add.time}">
+                                <label class="col-sm-4 control-label" for="addTime">服药时间：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="addTime"
+                                           title="服药时间"
+                                           placeholder="设置服药时间">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 col-sm-2" ng-repeat="item in addItem.time track by $index">
+                                    <span ng-click="deleteAddTime($index)"
+                                          class="label label-info mb-time">{{item}}</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="addMedicine()">提交</button>
+                        <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="edit"
+             tabindex="-1" role="dialog"
+             aria-labelledby="editLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title" id="editLabel">修改</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group" ng-class="{'has-error':error.edit.name}">
+                                <label class="col-sm-4 control-label" for="editName">药品名称：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="editName" ng-model="editItem.name"
+                                           title="药品名称"
+                                           placeholder="请设置药品名称">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.edit.date}">
+                                <label class="col-sm-4 control-label" for="editDate">生产日期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="editDate"
+                                           ng-model="editItem.productionDate" title="生产日期"
+                                           placeholder="请设置生产日期">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.edit.validity}">
+                                <label class="col-sm-4 control-label" for="editValidity">有效期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="editValidity"
+                                           ng-model="editItem.validity" title="有效期"
+                                           type="number" min="0" placeholder="请设置有效期">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.edit.number}">
+                                <label class="col-sm-4 control-label" for="editNumber">药品编号：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="editNumber"
+                                           type="number" min="0"
+                                           ng-model="editItem.number" title="药品编号"
+                                           placeholder="请设置药品编号">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':error.edit.time}">
+                                <label class="col-sm-4 control-label" for="editTime">服药时间：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="editTime" title="服药时间"
+                                           placeholder="设置服药时间">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-2 col-sm-2" ng-repeat="item in editItem.time track by $index">
+                                    <span ng-click="deleteEditTime($index)"
+                                          class="label label-info mb-time">{{item}}</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="updateMedicine()">提交</button>
+                        <button type="button" class="btn btn-default mb-edit-modal" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="search"
+             tabindex="-1" role="dialog"
+             aria-labelledby="editLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title" id="searchLabel">查看</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group" ng-class="{'has-error':register.error.name}">
+                                <label class="col-sm-4 control-label" for="searchName">药品名称：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="searchName" ng-model="searchItem.name"
+                                           title="药品名称"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':register.error.email}">
+                                <label class="col-sm-4 control-label" for="searchNumber">药品编号：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="searchNumber"
+                                           ng-model="searchItem.number" title="药品编号"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':register.error.pwd}">
+                                <label class="col-sm-4 control-label" for="searchDate">生产日期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="searchDate"
+                                           ng-model="searchItem.productionDate" title="生产日期"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':register.error.pwdRepeat}">
+                                <label class="col-sm-4 control-label" for="searchValidity">有效期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="searchValidity"
+                                           ng-model="searchItem.validity" title="有效期"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':register.error.pwdRepeat}">
+                                <label class="col-sm-4 control-label" for="searchDeadline">保质期：</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="searchDeadline"
+                                           ng-model="searchItem.deadline" title="保质期"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="searchTime">服药时间：</label>
+                                <div class="col-sm-2" id="searchTime"
+                                     ng-repeat="item in searchItem.time track by $index">
+                                    <span class="label label-info mb-time">{{item}}</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
