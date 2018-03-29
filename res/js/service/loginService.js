@@ -14,8 +14,6 @@ medicineBox.service('loginService', ['$cookies', '$http', function ($cookies, $h
         $http.post('ValidateTime.do').then(function (t) {
             if (t.data.result === 'true') {
                 window.location.href = 'main';
-            }else{
-                logout();
             }
         })
     };
