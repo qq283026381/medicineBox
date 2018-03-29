@@ -42,10 +42,13 @@ if ($name != '' && $pwd != '') {
         ];
         require_once '../util/JWT.php';
         $jwt = new JWT();
-        $response['token'] = $jwt->encode($payload, $jti);
-        $response['jti'] = $jti;
+        $token = $jwt->encode($payload, $jti);
+        $expire = time() + 1800;
+        setcookie('mbs', $token, $expire);
+        setcookie('jti', $jti, $expire);
     } else {
         $response['data'] = '没有该用户';
+        echo json_encode($response);
     }
-    echo json_encode($response);
+
 }
