@@ -1,11 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Vincent
  * Date: 2018/3/27
  * Time: 13:52
  */
-class MedicineModel{
+class MedicineModel
+{
     private $medicineId;
     private $userId;
     private $medicineName;
@@ -17,6 +19,7 @@ class MedicineModel{
 
     /**
      * MedicineModel constructor.
+     * @param $medicineId
      * @param $userId
      * @param $medicineName
      * @param $medicineProductionDate
@@ -25,8 +28,9 @@ class MedicineModel{
      * @param $medicineTime
      * @param $medicineNumber
      */
-    public function __construct($userId, $medicineName, $medicineProductionDate, $medicineValidity, $medicineDeadline, $medicineTime, $medicineNumber)
+    public function __construct($medicineId, $userId, $medicineName, $medicineProductionDate, $medicineValidity, $medicineDeadline, $medicineTime, $medicineNumber)
     {
+        $this->medicineId = $medicineId;
         $this->userId = $userId;
         $this->medicineName = $medicineName;
         $this->medicineProductionDate = $medicineProductionDate;
@@ -35,7 +39,6 @@ class MedicineModel{
         $this->medicineTime = $medicineTime;
         $this->medicineNumber = $medicineNumber;
     }
-
 
     /**
      * @return mixed
