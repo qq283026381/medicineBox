@@ -43,7 +43,15 @@ class MedicineImpl implements IMedicine
     {
         $query = 'UPDATE medicine SET medicine_name=? , medicine_production_date=? , medicine_validity=?,medicine_deadline=? , medicine_number=? , medicine_time=? WHERE medicine_id=?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssisssi', $medicine->getMedicineName(), $medicine->getMedicineProductionDate(), $medicine->getMedicineValidity(),$medicine->getMedicineDeadline(), $medicine->getMedicineNumber(), $medicine->getMedicineTime(), $medicine->getMedicineId());
+        $stmt->bind_param('ssisssi', $medicine->getMedicineName(), $medicine->getMedicineProductionDate(), $medicine->getMedicineValidity(), $medicine->getMedicineDeadline(), $medicine->getMedicineNumber(), $medicine->getMedicineTime(), $medicine->getMedicineId());
+        return $stmt->execute();
+    }
+
+    public function deleteMedicine($userId, $medicineId)
+    {
+        $query = 'DELETE FROM medicine WHERE user_id=? AND medicine_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $userId, $medicineId);
         return $stmt->execute();
     }
 }
