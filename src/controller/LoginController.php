@@ -32,7 +32,7 @@ if ($name != '' && $pwd != '') {
             #非必须。expire 指定token的生命周期。unix时间戳格式
             "exp" => $_SERVER['REQUEST_TIME'] + 7200,
             #非必须。接收该JWT的一方。
-            "aud" => $row['login_name'],
+            "aud" => $row['user_id'],
             # 非必须。JWT ID。针对当前token的唯一标识
             "jti" => $jti,
             # 自定义字段
