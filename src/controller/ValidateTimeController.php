@@ -7,8 +7,8 @@
  */
 require_once '../util/Tools.php';
 $tools = new Tools();
-$token = isset($_POST['token']) ? $_POST['token'] : '';
-$jti = isset($_POST['jti']) ? $_POST['jti'] : '';
+$token = isset($_COOKIE['mbs']) ? $_COOKIE['mbs'] : '';
+$jti = isset($_COOKIE['jti']) ? $_COOKIE['jti'] : '';
 if ($token != '' && $jti != '') {
     require_once '../util/JWT.php';
     $jwt = new JWT();
