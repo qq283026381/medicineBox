@@ -30,4 +30,22 @@ class DiagnosisImpl implements IDiagnosis
         $stmt->execute();
         return $stmt->get_result();
     }
+
+    public function getProbability($diagnosis)
+    {
+        $query = 'SELECT disease_id, diagnosis_probability FROM diagnosis WHERE diagnosis_type=? AND diagnosis_name=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ss', $diagnosis->getDiagnosisType(), $diagnosis->getDiagnosisName());
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
+    public function getDiseaseProbability($diseaseId)
+    {
+        $query = 'SELECT disease_probability,disease_name FROM disease WHERE disease_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('i', $diseaseId);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
