@@ -73,7 +73,6 @@ medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', f
                 var current = formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
                 arr[index].status = compareDate(value.deadline, current);
             });
-            console.log($scope.medicine);
         })
     };
     /***
