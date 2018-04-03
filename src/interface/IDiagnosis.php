@@ -9,4 +9,8 @@
 interface IDiagnosis
 {
     public function getAllDiagnosis();
+
+    public function getProbability($diagnosis);
+
+    public function getDiseaseProbability($diseaseId);
 }
