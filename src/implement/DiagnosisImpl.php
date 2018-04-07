@@ -28,7 +28,9 @@ class DiagnosisImpl implements IDiagnosis
         $query = "SELECT DISTINCT diagnosis_name ,diagnosis_type FROM diagnosis";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return $result;
     }
 
     public function getProbability($diagnosis)
@@ -37,7 +39,8 @@ class DiagnosisImpl implements IDiagnosis
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ss', $diagnosis->getDiagnosisType(), $diagnosis->getDiagnosisName());
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        return $result;
     }
 
     public function getDiseaseProbability($diseaseId)
@@ -46,6 +49,7 @@ class DiagnosisImpl implements IDiagnosis
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('i', $diseaseId);
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        return $result;
     }
 }
