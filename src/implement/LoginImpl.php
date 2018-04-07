@@ -31,7 +31,9 @@ class LoginImpl implements ILogin
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ss', $user->getUserName(), $user->getUserPwd());
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return $result;
     }
 
     public function register($user)
@@ -39,7 +41,9 @@ class LoginImpl implements ILogin
         $query = 'INSERT INTO user (user_name,user_pwd,user_email,user_phone) VALUES (?,?,?,?)';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ssss', $user->getUserName(), $user->getUserPwd(), $user->getUserEmail(), $user->getUserPhone());
-        return $stmt->execute();
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
     }
 
     public function checkUser($name)
@@ -48,6 +52,8 @@ class LoginImpl implements ILogin
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('s', $name);
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return $result;
     }
 }
