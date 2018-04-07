@@ -28,7 +28,9 @@ class MedicineImpl implements IMedicine
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('i', $id);
         $stmt->execute();
-        return $stmt->get_result();
+        $result = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return $result;
     }
 
     public function addMedicine($medicine)
@@ -36,7 +38,9 @@ class MedicineImpl implements IMedicine
         $query = 'INSERT INTO medicine (user_id,medicine_name,medicine_production_date,medicine_validity,medicine_deadline,medicine_time,medicine_number) VALUES(?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ississs', $medicine->getUserId(), $medicine->getMedicineName(), $medicine->getMedicineProductionDate(), $medicine->getMedicineValidity(), $medicine->getMedicineDeadline(), $medicine->getMedicineTime(), $medicine->getMedicineNumber());
-        return $stmt->execute();
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
     }
 
     public function updateMedicine($medicine)
@@ -44,7 +48,9 @@ class MedicineImpl implements IMedicine
         $query = 'UPDATE medicine SET medicine_name=? , medicine_production_date=? , medicine_validity=?,medicine_deadline=? , medicine_number=? , medicine_time=? WHERE medicine_id=?';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ssisssi', $medicine->getMedicineName(), $medicine->getMedicineProductionDate(), $medicine->getMedicineValidity(), $medicine->getMedicineDeadline(), $medicine->getMedicineNumber(), $medicine->getMedicineTime(), $medicine->getMedicineId());
-        return $stmt->execute();
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
     }
 
     public function deleteMedicine($userId, $medicineId)
@@ -52,6 +58,8 @@ class MedicineImpl implements IMedicine
         $query = 'DELETE FROM medicine WHERE user_id=? AND medicine_id=?';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ii', $userId, $medicineId);
-        return $stmt->execute();
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
     }
 }
