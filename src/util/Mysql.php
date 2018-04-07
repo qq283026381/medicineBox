@@ -13,13 +13,20 @@ class Mysql
     static private $password = '960517';
     static private $dbname = 'medicine_box_system';
 
-    function getConnection()
+    private $conn;
+
+    public function getConnection()
     {
-        $conn = new mysqli($this::$servername, $this::$username, $this::$password, $this::$dbname);
-        if ($conn->connect_error) {
+        $this->conn = new mysqli($this::$servername, $this::$username, $this::$password, $this::$dbname);
+        if ($this->conn->connect_error) {
             return false;
         } else {
-            return $conn;
+            return $this->conn;
         }
+    }
+
+    public function closeConnection()
+    {
+        $this->conn->close();
     }
 }
