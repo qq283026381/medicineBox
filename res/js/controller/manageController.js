@@ -214,7 +214,7 @@ medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', f
         }
         if (!$scope.error.add.name && !$scope.error.add.date && !$scope.error.add.validity && !$scope.error.add.number && !$scope.error.add.time) {
             $http.post('AddMedicine.do', $scope.addItem).then(function (t) {
-                if (t.data === "true") {
+                if (t.data.result) {
                     toaster.pop('success', '', '药品 ' + $scope.addItem.name + ' 添加成功');
                     setTimeout(function () {
                         $('.mb-add-modal').click();
@@ -309,9 +309,14 @@ medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', f
                 }
             }, true)
         }
-        if (!$scope.error.edit.name && !$scope.error.edit.date && !$scope.error.edit.validity && !$scope.error.edit.number && !$scope.error.edit.time) {
+        if (!$scope.error.edit.name &&
+            !$scope.error.edit.date &&
+            !$scope.error.edit.validity &&
+            !$scope.error.edit.number &&
+            !$scope.error.edit.time) {
             $http.post('UpdateMedicine.do', $scope.editItem).then(function (t) {
-                if (t.data === 'true') {
+                console.log(t);
+                if (t.data.result) {
                     toaster.pop('success', '', '修改成功');
                     setTimeout(function () {
                         $('.mb-edit-modal').click();
@@ -333,7 +338,7 @@ medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', f
         if (affirmance) {
             var id = $scope.medicine[index].id;
             $http.post('DeleteMedicine.do', {'id': id}).then(function (t) {
-                if (t.data === 'true') {
+                if (t.data.result) {
                     toaster.pop('success', '', '删除成功');
                     getMedicine();
                 } else {
