@@ -8,17 +8,22 @@ medicineBox.config(['$routeProvider', '$locationProvider', function ($routeProvi
         })
         .when('/manage', {
             templateUrl: 'manage.page',
-            controller:'manageCtrl'
+            controller: 'manageCtrl'
         })
         .when('/diagnosis', {
             templateUrl: 'diagnosis.page',
-            controller:'diagnosisCtrl'
+            controller: 'diagnosisCtrl'
         })
         .when('/efficacy', {
             templateUrl: 'efficacy.page'
         })
         .when('/recording', {
-            templateUrl: 'recording.page'
+            templateUrl: 'recording.page',
+            controller: 'recordingCtrl'
+        })
+        .when('/recording/new', {
+            templateUrl: 'new.page',
+            controller:'newRecordingCtrl'
         })
         .when('/diet', {
             templateUrl: 'diet.page'
