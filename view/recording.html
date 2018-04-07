@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-sm-3">
+        <button data-toggle="modal"
+                data-target="#add"
+                class="btn btn-info mb-add-btn"
+                ng-click="initAdd()">添加体检记录
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="mb-table text-center table table-bordered table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>体检日期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in recordings">
+                <td>{{$index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.gender}}</td>
+                <td>{{item.time}}</td>
+                <td>
+                    <span class="fa fa-search operation operation-search"
+                          title="查看"
+                          data-toggle="modal"
+                          data-target="#search"
+                          ng-click="setSearchItem($index)"></span>
+                    <span class="fa fa-times operation operation-remove"
+                          title="删除"
+                          ng-click="deleteMedicine($index)"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="add"
+     tabindex="-1" role="dialog"
+     aria-labelledby="addLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="addLabel">新增</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.name}">
+                        <label class="col-sm-4 control-label" for="addName">姓名：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="addName" ng-model="add.name"
+                                   title="姓名"
+                                   placeholder="请设置姓名">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gender}">
+                        <label class="col-sm-4 control-label" for="addGender">性别：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="addGender" ng-model="add.gender">
+                                <option value="" selected>请选择</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.time}">
+                        <label class="col-sm-4 control-label" for="addTime">体检日期：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="addTime"
+                                   ng-model="add.time" title="体检日期"
+                                   placeholder="请设置体检日期">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="submit()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
