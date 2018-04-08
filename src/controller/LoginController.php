@@ -10,11 +10,8 @@ require_once '../model/UserModel.php';
 require_once '../implement/LoginImpl.php';
 $tool = new Tools();
 $data = $tool->getData();
-
-$name = isset($data['name']) ? $data['name'] : '';
-$pwd = isset($data['pwd']) ? $data['pwd'] : '';
-if ($name != '' && $pwd != '') {
-    $user = new UserModel($name, $pwd, '', '');
+if ($tool->checkData($data)) {
+    $user = new UserModel($data['name'], $data['pwd'], '', '');
     $login = new LoginImpl();
     $result = $login->checkLoginInfo($user);
     $response = [];
@@ -50,5 +47,6 @@ if ($name != '' && $pwd != '') {
         $response['data'] = '没有该用户';
         echo json_encode($response);
     }
-
+} else {
+    echo $tool->setData($result['data'] = '验证失败');
 }
