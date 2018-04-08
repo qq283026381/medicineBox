@@ -13,13 +13,17 @@ if ($tools->checkAuthority() !== 'true') {
     $tools->goBack();
 } else {
     $data = $tools->getData();
-    $userId = $tools->getUserId();
-    if ($userId != 'false') {
-        if (gettype($userId) == 'integer') {
-            $recording = new RecordingModel($userId, $data['name'], $data['gender'], $data['time']);
-            $operation = new RecordingImpl();
-            $result = $operation->addRecording($recording);
-            echo $tools->setData($result);
+    if ($tools->checkData($data)) {
+        $userId = $tools->getUserId();
+        if ($userId != 'false') {
+            if (gettype($userId) == 'integer') {
+                $recording = new RecordingModel($userId, $data['name'], $data['gender'], $data['time']);
+                $operation = new RecordingImpl();
+                $result = $operation->addRecording($recording);
+                echo $tools->setData($result);
+            }
         }
+    } else {
+        echo $tools->setData(array('result' => false));
     }
 }
