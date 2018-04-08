@@ -315,7 +315,6 @@ medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', f
             !$scope.error.edit.number &&
             !$scope.error.edit.time) {
             $http.post('UpdateMedicine.do', $scope.editItem).then(function (t) {
-                console.log(t);
                 if (t.data.result) {
                     toaster.pop('success', '', '修改成功');
                     setTimeout(function () {
