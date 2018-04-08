@@ -1,0 +1,733 @@
+<div class="row" ng-hide="status.internal">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    内科
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.internal.height}">
+                        <td>身高/cm</td>
+                        <td>
+                            <input ng-model="internal.height" type="number" min="0" max="300" class="form-control"
+                                   title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.weight}">
+                        <td>体重/kg</td>
+                        <td>
+                            <input ng-model="internal.weight" type="number" min="0" max="200" step="0.1"
+                                   class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.BMI}">
+                        <td>体重指数</td>
+                        <td>
+                            <input ng-model="internal.BMI" type="number" min="0" max="50" step="0.01"
+                                   class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.bloodPressure}">
+                        <td>血压/mmHg</td>
+                        <td>
+                            <input ng-model="internal.bloodPressure" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.heartRate}">
+                        <td>心律</td>
+                        <td>
+                            <input ng-model="internal.heartRate" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.heart}">
+                        <td>心界</td>
+                        <td>
+                            <input ng-model="internal.heart" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.noise}">
+                        <td>杂音</td>
+                        <td>
+                            <input ng-model="internal.noise" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.liver}">
+                        <td>肝脏</td>
+                        <td>
+                            <input ng-model="internal.liver" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.spleen}">
+                        <td>脾</td>
+                        <td>
+                            <input ng-model="internal.spleen" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.lung}">
+                        <td>肺</td>
+                        <td>
+                            <input ng-model="internal.lung" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.internal.internalSum}">
+                        <td>内科小结</td>
+                        <td>
+                            <input ng-model="internal.internalSum" class="form-control" title="">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addInternal()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.surgical">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    外科
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.surgical.skin}">
+                        <td>皮肤</td>
+                        <td>
+                            <input ng-model="surgical.skin" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.surgical.thyroid}">
+                        <td>甲状腺</td>
+                        <td>
+                            <input ng-model="surgical.thyroid" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.surgical.lymphNode}">
+                        <td>淋巴结</td>
+                        <td>
+                            <input ng-model="surgical.lymphNode" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.surgical.spin}">
+                        <td>脊柱</td>
+                        <td>
+                            <input ng-model="surgical.spin" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.surgical.limbJoint}">
+                        <td>四肢关节</td>
+                        <td>
+                            <input ng-model="surgical.limbJoint" class="form-control" title="">
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.surgical.surgicalSum}">
+                        <td>外科小结</td>
+                        <td>
+                            <input ng-model="surgical.surgicalSum" class="form-control" title="">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addSurgical()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.ophthalmology">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    眼科
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.ophthalmology.conjunctiva}">
+                        <td>结膜</td>
+                        <td><input ng-model="ophthalmology.conjunctiva" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.ophthalmology.fundus}">
+                        <td>眼底</td>
+                        <td><input ng-model="ophthalmology.fundus" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.ophthalmology.iris}">
+                        <td>虹膜</td>
+                        <td><input ng-model="ophthalmology.iris" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.ophthalmology.cornea}">
+                        <td>角膜</td>
+                        <td><input ng-model="ophthalmology.cornea" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.ophthalmology.lens}">
+                        <td>晶状体</td>
+                        <td><input ng-model="ophthalmology.lens" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.ophthalmology.ophthalmologySum}">
+                        <td>眼科小结</td>
+                        <td><input ng-model="ophthalmology.ophthalmologySum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addOphthalmology()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.gender=='男'||status.gynecology">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    妇科
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.gynecology.vulva}">
+                        <td>外阴</td>
+                        <td><input ng-model="gynecology.vulva" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.vaginal}">
+                        <td>阴道</td>
+                        <td><input ng-model="gynecology.vaginal" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.vaginalSecretion}">
+                        <td>阴道分泌物</td>
+                        <td><input ng-model="gynecology.vaginalSecretion" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.cervix}">
+                        <td>宫颈</td>
+                        <td><input ng-model="gynecology.cervix" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.palace}">
+                        <td>宫体</td>
+                        <td><input ng-model="gynecology.palace" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.leftAttachment}">
+                        <td>左附件</td>
+                        <td><input ng-model="gynecology.leftAttachment" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.rightAttachment}">
+                        <td>右附件</td>
+                        <td><input ng-model="gynecology.rightAttachment" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.gynecology.gynecologySum}">
+                        <td>妇科小结</td>
+                        <td><input ng-model="gynecology.gynecologySum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addGynecology()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.infraredMammogram">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    红外线乳透
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.infraredMammogram.leftBreast}">
+                        <td>左乳所见</td>
+                        <td><input ng-model="infraredMammogram.leftBreast" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.infraredMammogram.rightBreast}">
+                        <td>右乳所见</td>
+                        <td><input ng-model="infraredMammogram.rightBreast" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.infraredMammogram.infraredMammogramSum}">
+                        <td>红外线乳透小结</td>
+                        <td><input ng-model="infraredMammogram.infraredMammogramSum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addInfraredMammogram()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.BScan">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    B超
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.BScan.BScan}">
+                        <td>B超所见</td>
+                        <td><input ng-model="BScan.BScan" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.BScan.BScanSum}">
+                        <td>B超小结</td>
+                        <td><input ng-model="BScan.BScanSum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addBScan()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.boneDensity">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    骨密度
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.boneDensity.boneDensitySum}">
+                        <td>骨密度小结</td>
+                        <td><input ng-model="boneDensity.boneDensitySum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addBoneDensity()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.ECG">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    心电图
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.ECG.ECG}">
+                        <td>心电图所见</td>
+                        <td><input ng-model="ECG.ECG" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.ECG.ECGSum}">
+                        <td>心电图小结</td>
+                        <td><input ng-model="ECG.ECGSum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addECG()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.XRay">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    X射线
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.XRay.XRay}">
+                        <td>X射线所见</td>
+                        <td><input ng-model="XRay.XRay" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.XRay.XRaySum}">
+                        <td>X射线小结</td>
+                        <td><input ng-model="XRay.XRaySum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addXRay()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.biochemical">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    生化检查
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.biochemical.protein}">
+                        <td>总蛋白</td>
+                        <td><input ng-model="biochemical.protein" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.albumin}">
+                        <td>白蛋白</td>
+                        <td><input ng-model="biochemical.albumin" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.globulin}">
+                        <td>球蛋白</td>
+                        <td><input ng-model="biochemical.globulin" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.AG}">
+                        <td>白球比</td>
+                        <td><input ng-model="biochemical.AG" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.TBIL}">
+                        <td>总胆红素</td>
+                        <td><input ng-model="biochemical.TBIL" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.DBIL}">
+                        <td>直接胆红素</td>
+                        <td><input ng-model="biochemical.DBIL" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.IBIL}">
+                        <td>间接胆红素</td>
+                        <td><input ng-model="biochemical.IBIL" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.ALT}">
+                        <td>谷丙转氨酶</td>
+                        <td><input ng-model="biochemical.ALT" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.AST}">
+                        <td>谷草转氨酶</td>
+                        <td><input ng-model="biochemical.AST" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.BUN}">
+                        <td>尿素氨</td>
+                        <td><input ng-model="biochemical.BUN" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.CRE}">
+                        <td>肌酐</td>
+                        <td><input ng-model="biochemical.CRE" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.UA}">
+                        <td>尿酸</td>
+                        <td><input ng-model="biochemical.UA" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.TG}">
+                        <td>甘油三酯</td>
+                        <td><input ng-model="biochemical.TG" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.CHO}">
+                        <td>总胆固醇</td>
+                        <td><input ng-model="biochemical.CHO" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.HDLC}">
+                        <td>高密度胆固醇</td>
+                        <td><input ng-model="biochemical.HDLC" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.LDLC}">
+                        <td>低密度胆固醇</td>
+                        <td><input ng-model="biochemical.LDLC" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.GLU}">
+                        <td>葡萄糖</td>
+                        <td><input ng-model="biochemical.GLU" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.ALP}">
+                        <td>碱性磷酸酶</td>
+                        <td><input ng-model="biochemical.ALP" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.biochemical.biochemicalSum}">
+                        <td>生化检查小结</td>
+                        <td><input ng-model="biochemical.biochemicalSum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addBiochemical()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.bloodRoutine">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    血常规
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.bloodRoutine.WBC}">
+                        <td>白细胞</td>
+                        <td><input ng-model="bloodRoutine.WBC" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.RBC}">
+                        <td>红细胞</td>
+                        <td><input ng-model="bloodRoutine.RBC" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.HGB}">
+                        <td>血红蛋白</td>
+                        <td><input ng-model="bloodRoutine.HGB" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.HCT}">
+                        <td>红细胞压积</td>
+                        <td><input ng-model="bloodRoutine.HCT" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.PLT}">
+                        <td>血小板</td>
+                        <td><input ng-model="bloodRoutine.PLT" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.MCV}">
+                        <td>平均红细胞体积</td>
+                        <td><input ng-model="bloodRoutine.MCV" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.MCH}">
+                        <td>平均血红蛋白量</td>
+                        <td><input ng-model="bloodRoutine.MCH" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.MCHC}">
+                        <td>平均血红蛋白浓度</td>
+                        <td><input ng-model="bloodRoutine.MCHC" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.MPV}">
+                        <td>平均血小板体积</td>
+                        <td><input ng-model="bloodRoutine.MPV" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.PDW}">
+                        <td>血小板分布宽度</td>
+                        <td><input ng-model="bloodRoutine.PDW" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.LY1}">
+                        <td>淋巴细胞比率</td>
+                        <td><input ng-model="bloodRoutine.LY1" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.MO1}">
+                        <td>单核细胞比率</td>
+                        <td><input ng-model="bloodRoutine.MO1" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.GR1}">
+                        <td>中性细胞比率</td>
+                        <td><input ng-model="bloodRoutine.GR1" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.LY}">
+                        <td>淋巴细胞</td>
+                        <td><input ng-model="bloodRoutine.LY" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.MO}">
+                        <td>单核细胞</td>
+                        <td><input ng-model="bloodRoutine.MO" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.GR}">
+                        <td>中性细胞</td>
+                        <td><input ng-model="bloodRoutine.GR" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.bloodRoutine.bloodRoutineSum}">
+                        <td>血常规小结</td>
+                        <td><input ng-model="bloodRoutine.bloodRoutineSum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addBloodRoutine()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-hide="status.urineRoutine">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    尿常规
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>检查结果</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-class="{'has-error':error.urineRoutine.LEU}">
+                        <td>白细胞定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.LEU" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.KET}">
+                        <td>酮体定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.KET" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.URO}">
+                        <td>尿胆原定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.URO" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.BIL}">
+                        <td>胆红素定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.BIL" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.SG}">
+                        <td>尿比重</td>
+                        <td><input ng-model="urineRoutine.SG" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.BLD}">
+                        <td>红细胞定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.BLD" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.PRO}">
+                        <td>尿蛋白定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.PRO" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.CLU}">
+                        <td>尿糖定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.CLU" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.NIT}">
+                        <td>亚硝酸盐定性</td>
+                        <td>
+                            <select class="form-control" ng-model="urineRoutine.NIT" title="">
+                                <option value="">请选择</option>
+                                <option value="-">-</option>
+                                <option value="+">+</option>
+                                <option value="+-">+-</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.PH}">
+                        <td>PH值</td>
+                        <td><input ng-model="urineRoutine.PH" class="form-control" title=""></td>
+                    </tr>
+                    <tr ng-class="{'has-error':error.urineRoutine.urineRoutineSum}">
+                        <td>尿常规小结</td>
+                        <td><input ng-model="urineRoutine.urineRoutineSum" class="form-control" title=""></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" ng-click="addUrineRoutine()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
