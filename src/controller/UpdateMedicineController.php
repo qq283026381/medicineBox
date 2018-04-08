@@ -13,26 +13,30 @@ if ($tools->checkAuthority() !== 'true') {
     $tools->goBack();
 } else {
     $data = $tools->getData();
-    $name = $data['name'];
-    $productionDate = $data['productionDate'];
-    $validity = $data['validity'];
-    $time = $data['time'];
-    $number = $data['number'];
-    $id = $data['id'];
+    if ($tools->checkData($data)) {
+        $name = $data['name'];
+        $productionDate = $data['productionDate'];
+        $validity = $data['validity'];
+        $time = $data['time'];
+        $number = $data['number'];
+        $id = $data['id'];
 
-    $date = explode('-', $productionDate);
-    $date[1] += $validity;
-    if ($date[1] > 12) {
-        $date[0] += intval($date[1] / 12);
-        $date[1] %= 12;
-        if ($date[1] > 0 && $date[1] < 10) {
-            $date[1] = '0' . $date[1];
+        $date = explode('-', $productionDate);
+        $date[1] += $validity;
+        if ($date[1] > 12) {
+            $date[0] += intval($date[1] / 12);
+            $date[1] %= 12;
+            if ($date[1] > 0 && $date[1] < 10) {
+                $date[1] = '0' . $date[1];
+            }
         }
+        $deadline = implode('-', $date);
+        $time = implode(';', $time);
+        $medicine = new MedicineModel($id, 1, $name, $productionDate, $validity, $deadline, $time, $number);
+        $operation = new MedicineImpl();
+        $result = $operation->updateMedicine($medicine);
+        echo $tools->setData($result);
+    } else {
+        echo $tools->setData(array('result' => false));
     }
-    $deadline = implode('-', $date);
-    $time = implode(';', $time);
-    $medicine = new MedicineModel($id, 1, $name, $productionDate, $validity, $deadline, $time, $number);
-    $operation = new MedicineImpl();
-    $result = $operation->updateMedicine($medicine);
-    echo $tools->setData($result);
 }
