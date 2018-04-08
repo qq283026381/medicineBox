@@ -15,7 +15,7 @@
             <tr ng-repeat="item in diagnosis.source">
                 <td>{{item.diagnosisType}}</td>
                 <td>
-                    <select title="" ng-model="input"
+                    <select class="form-control" title="" ng-model="input"
                             ng-change="inputDiagnosis(item.diagnosisType,input)"
                             ng-options="x for x in item.diagnosisName">
                         <option value="">请选择</option>
