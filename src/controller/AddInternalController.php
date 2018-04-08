@@ -21,7 +21,7 @@ if ($tools->checkAuthority() !== 'true') {
         if ($result['result']) {
             require_once '../implement/RecordingImpl.php';
             $recording = new RecordingImpl();
-            $recording->updateInternal($result['number'], $data['recordingId']);
+            $recording->updateRecording('internal', $result['number'], $data['recordingId']);
         }
         echo $tools->setData($result);
     } else {
