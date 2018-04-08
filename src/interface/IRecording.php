@@ -12,7 +12,7 @@ interface IRecording
 
     public function getAllRecordings($userId);
 
-    public function updateInternal($internalId, $recordingId);
+    public function updateRecording($method, $updateId, $recordingId);
 
     public function getRecording($recordingId);
 }
