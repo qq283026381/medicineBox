@@ -8,17 +8,17 @@
  */
 class Tools
 {
-    function getData()
+    public function getData()
     {
         return json_decode(file_get_contents('php://input'), true);
     }
 
-    function setData($data)
+    public function setData($data)
     {
         return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
-    function checkAuthority()
+    public function checkAuthority()
     {
         $token = isset($_COOKIE['mbs']) ? $_COOKIE['mbs'] : '';
         $jti = isset($_COOKIE['jti']) ? $_COOKIE['jti'] : '';
@@ -51,12 +51,12 @@ class Tools
         return $result;
     }
 
-    function goBack()
+    public function goBack()
     {
         echo "<script>alert('NO ACCESS !');window.location.href='../../login.html';</script>";
     }
 
-    function getUserId()
+    public function getUserId()
     {
         $token = isset($_COOKIE['mbs']) ? $_COOKIE['mbs'] : '';
         $jti = isset($_COOKIE['jti']) ? $_COOKIE['jti'] : '';
@@ -87,5 +87,17 @@ class Tools
             }
         }
         return $result;
+    }
+
+    public function checkData($data)
+    {
+        $flag = true;
+        foreach ($data as $item) {
+            if ($item === '' || $item === null) {
+                $flag = false;
+                break;
+            }
+        }
+        return $flag;
     }
 }
