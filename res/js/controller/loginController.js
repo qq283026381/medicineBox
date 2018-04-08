@@ -41,7 +41,7 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             $http.post('Login.do', $scope.login).then(function (t) {
                 $scope.login.pwd = '';
                 if (loginService.getCookie('mbs')) {
-                    toaster.pop('success', '恭喜', '登录成功');
+                    toaster.pop('success', '', '登录成功');
                     setTimeout(function () {
                         $window.location.href = 'main';
                     }, 1000);
