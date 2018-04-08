@@ -44,11 +44,11 @@ class RecordingImpl implements IRecording
         return $result;
     }
 
-    public function updateInternal($internalId, $recordingId)
+    public function updateRecording($method, $updateId, $recordingId)
     {
-        $query = 'UPDATE recording SET internal_id=? WHERE recording_id=?';
+        $query = 'UPDATE recording SET ' . $method . '_id=? WHERE recording_id=?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ii', $internalId, $recordingId);
+        $stmt->bind_param('ii', $updateId, $recordingId);
         $result = $stmt->execute();
         return array('result' => $result);
     }
