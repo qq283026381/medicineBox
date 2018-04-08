@@ -11,16 +11,20 @@ if ($tools->checkAuthority() !== 'true') {
     $tools->goBack();
 } else {
     $data = $tools->getData();
-    $userId = $tools->getUserId();
-    require_once '../model/InternalModel.php';
-    require_once '../implement/InternalImpl.php';
-    $internal = new InternalModel($userId, $data['height'], $data['weight'], $data['BMI'], $data['bloodPressure'], $data['heartRate'], $data['heart'], $data['noise'], $data['liver'], $data['spleen'], $data['lung'], $data['internalSum']);
-    $operation = new InternalImpl();
-    $result = $operation->addInternal($internal);
-    if($result['result']){
-        require_once '../implement/RecordingImpl.php';
-        $recording=new RecordingImpl();
-        $recording->updateInternal($result['number'],$data['recordingId']);
+    if ($tools->checkData($data)) {
+        $userId = $tools->getUserId();
+        require_once '../model/InternalModel.php';
+        require_once '../implement/InternalImpl.php';
+        $internal = new InternalModel($userId, $data['height'], $data['weight'], $data['BMI'], $data['bloodPressure'], $data['heartRate'], $data['heart'], $data['noise'], $data['liver'], $data['spleen'], $data['lung'], $data['internalSum']);
+        $operation = new InternalImpl();
+        $result = $operation->addInternal($internal);
+        if ($result['result']) {
+            require_once '../implement/RecordingImpl.php';
+            $recording = new RecordingImpl();
+            $recording->updateInternal($result['number'], $data['recordingId']);
+        }
+        echo $tools->setData($result);
+    } else {
+        echo $tools->setData(array('result' => false));
     }
-    echo $tools->setData($result);
 }
