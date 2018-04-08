@@ -40,6 +40,7 @@ class DiagnosisImpl implements IDiagnosis
         $stmt->bind_param('ss', $diagnosis->getDiagnosisType(), $diagnosis->getDiagnosisName());
         $stmt->execute();
         $result = $stmt->get_result();
+        $this->mysql->closeConnection();
         return $result;
     }
 
@@ -50,6 +51,7 @@ class DiagnosisImpl implements IDiagnosis
         $stmt->bind_param('i', $diseaseId);
         $stmt->execute();
         $result = $stmt->get_result();
+        $this->mysql->closeConnection();
         return $result;
     }
 }
