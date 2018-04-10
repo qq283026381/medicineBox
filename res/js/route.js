@@ -23,7 +23,11 @@ medicineBox.config(['$routeProvider', '$locationProvider', function ($routeProvi
         })
         .when('/recording/new', {
             templateUrl: 'new.page',
-            controller:'newRecordingCtrl'
+            controller: 'newRecordingCtrl'
+        })
+        .when('/recording/search', {
+            templateUrl: 'search.page',
+            controller: 'searchRecordingCtrl'
         })
         .when('/diet', {
             templateUrl: 'diet.page'
