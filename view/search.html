@@ -1,0 +1,1790 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header" style="margin-top: 0;">
+            <h1>查看体检记录
+                <small>{{info.name}}于{{info.time}}的体检记录</small>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    基本信息
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>姓名</td>
+                        <td>{{info.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>性别</td>
+                        <td>{{info.gender}}</td>
+                    </tr>
+                    <tr>
+                        <td>时间</td>
+                        <td>{{info.time}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseInfo"
+                        ng-click="initInfo()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--基本信息-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    内科记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>身高</td>
+                        <td>{{internal.height}}</td>
+                    </tr>
+                    <tr>
+                        <td>体重</td>
+                        <td>{{internal.weight}}</td>
+                    </tr>
+                    <tr>
+                        <td>体重指数</td>
+                        <td>{{internal.BMI}}</td>
+                    </tr>
+                    <tr>
+                        <td>血压</td>
+                        <td>{{internal.bloodPressure}}</td>
+                    </tr>
+                    <tr>
+                        <td>心律</td>
+                        <td>{{internal.heartRate}}</td>
+                    </tr>
+                    <tr>
+                        <td>心界</td>
+                        <td>{{internal.heart}}</td>
+                    </tr>
+                    <tr>
+                        <td>杂音</td>
+                        <td>{{internal.noise}}</td>
+                    </tr>
+                    <tr>
+                        <td>肝脏</td>
+                        <td>{{internal.liver}}</td>
+                    </tr>
+                    <tr>
+                        <td>脾</td>
+                        <td>{{internal.spleen}}</td>
+                    </tr>
+                    <tr>
+                        <td>肺</td>
+                        <td>{{internal.lung}}</td>
+                    </tr>
+                    <tr>
+                        <td>内科小结</td>
+                        <td>{{internal.internalSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseInternal"
+                        ng-click="initInternal()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--内科-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    外科记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>皮肤</td>
+                        <td>{{surgical.skin}}</td>
+                    </tr>
+                    <tr>
+                        <td>甲状腺</td>
+                        <td>{{surgical.thyroid}}</td>
+                    </tr>
+                    <tr>
+                        <td>淋巴结</td>
+                        <td>{{surgical.lymphNode}}</td>
+                    </tr>
+                    <tr>
+                        <td>脊柱</td>
+                        <td>{{surgical.spin}}</td>
+                    </tr>
+                    <tr>
+                        <td>四肢关节</td>
+                        <td>{{surgical.limbJoint}}</td>
+                    </tr>
+                    <tr>
+                        <td>外科小结</td>
+                        <td>{{surgical.surgicalSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseSurgical"
+                        ng-click="initSurgical()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--外科-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    眼科记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>结膜</td>
+                        <td>{{ophthalmology.conjunctiva}}</td>
+                    </tr>
+                    <tr>
+                        <td>眼底</td>
+                        <td>{{ophthalmology.fundus}}</td>
+                    </tr>
+                    <tr>
+                        <td>虹膜</td>
+                        <td>{{ophthalmology.iris}}</td>
+                    </tr>
+                    <tr>
+                        <td>角膜</td>
+                        <td>{{ophthalmology.cornea}}</td>
+                    </tr>
+                    <tr>
+                        <td>晶状体</td>
+                        <td>{{ophthalmology.lens}}</td>
+                    </tr>
+                    <tr>
+                        <td>眼科小结</td>
+                        <td>{{ophthalmology.ophthalmologySum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseOphthalmology"
+                        ng-click="initOphthalmology()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--眼科-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    妇科记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>外阴</td>
+                        <td>{{gynecology.vulva}}</td>
+                    </tr>
+                    <tr>
+                        <td>阴道</td>
+                        <td>{{gynecology.vaginal}}</td>
+                    </tr>
+                    <tr>
+                        <td>阴道分泌物</td>
+                        <td>{{gynecology.vaginalSecretion}}</td>
+                    </tr>
+                    <tr>
+                        <td>宫颈</td>
+                        <td>{{gynecology.cervix}}</td>
+                    </tr>
+                    <tr>
+                        <td>宫体</td>
+                        <td>{{gynecology.palace}}</td>
+                    </tr>
+                    <tr>
+                        <td>左附件</td>
+                        <td>{{gynecology.leftAttachment}}</td>
+                    </tr>
+                    <tr>
+                        <td>右附件</td>
+                        <td>{{gynecology.rightAttachment}}</td>
+                    </tr>
+                    <tr>
+                        <td>妇科小结</td>
+                        <td>{{gynecology.gynecologySum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseGynecology"
+                        ng-click="initGynecology()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--妇科-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    红外线乳透记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>左乳所见</td>
+                        <td>{{infraredMammogram.leftBreast}}</td>
+                    </tr>
+                    <tr>
+                        <td>右乳所见</td>
+                        <td>{{infraredMammogram.rightBreast}}</td>
+                    </tr>
+                    <tr>
+                        <td>红外线乳透小结</td>
+                        <td>{{infraredMammogram.infraredMammogramSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseInfraredMammogram"
+                        ng-click="initInfraredMammogram()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--红外线乳透-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    B超记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>B超所见</td>
+                        <td>{{BScan.BScan}}</td>
+                    </tr>
+                    <tr>
+                        <td>B超小结</td>
+                        <td>{{BScan.BScanSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseBScan"
+                        ng-click="initBScan()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--B超-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    骨密度记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>骨密度小结</td>
+                        <td>{{boneDensity.boneDensitySum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseBoneDensity"
+                        ng-click="initBoneDensity()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--骨密度-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    心电图记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>心电图所见</td>
+                        <td>{{ECG.ECG}}</td>
+                    </tr>
+                    <tr>
+                        <td>心电图小结</td>
+                        <td>{{ECG.ECGSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseECG"
+                        ng-click="initECG()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--心电图-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    X射线记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>X射线所见</td>
+                        <td>{{XRay.XRay}}</td>
+                    </tr>
+                    <tr>
+                        <td>X射线小结</td>
+                        <td>{{XRay.XRaySum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseXRay"
+                        ng-click="initXRay()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--X射线-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    生化检查记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>总蛋白</td>
+                        <td>{{biochemical.protein}}</td>
+                    </tr>
+                    <tr>
+                        <td>白蛋白</td>
+                        <td>{{biochemical.albumin}}</td>
+                    </tr>
+                    <tr>
+                        <td>球蛋白</td>
+                        <td>{{biochemical.globulin}}</td>
+                    </tr>
+                    <tr>
+                        <td>白球比</td>
+                        <td>{{biochemical.AG}}</td>
+                    </tr>
+                    <tr>
+                        <td>总胆红素</td>
+                        <td>{{biochemical.TBIL}}</td>
+                    </tr>
+                    <tr>
+                        <td>直接胆红素</td>
+                        <td>{{biochemical.DBIL}}</td>
+                    </tr>
+                    <tr>
+                        <td>间接胆红素</td>
+                        <td>{{biochemical.IBIL}}</td>
+                    </tr>
+                    <tr>
+                        <td>谷丙转氨酶</td>
+                        <td>{{biochemical.ALT}}</td>
+                    </tr>
+                    <tr>
+                        <td>谷草转氨酶</td>
+                        <td>{{biochemical.AST}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿素氨</td>
+                        <td>{{biochemical.BUN}}</td>
+                    </tr>
+                    <tr>
+                        <td>肌酐</td>
+                        <td>{{biochemical.CRE}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿酸</td>
+                        <td>{{biochemical.UA}}</td>
+                    </tr>
+                    <tr>
+                        <td>甘油三酯</td>
+                        <td>{{biochemical.TG}}</td>
+                    </tr>
+                    <tr>
+                        <td>总胆固醇</td>
+                        <td>{{biochemical.CHO}}</td>
+                    </tr>
+                    <tr>
+                        <td>高密度胆固醇</td>
+                        <td>{{biochemical.HDLC}}</td>
+                    </tr>
+                    <tr>
+                        <td>低密度胆固醇</td>
+                        <td>{{biochemical.LDLC}}</td>
+                    </tr>
+                    <tr>
+                        <td>葡萄糖</td>
+                        <td>{{biochemical.GLU}}</td>
+                    </tr>
+                    <tr>
+                        <td>碱性磷酸酶</td>
+                        <td>{{biochemical.ALP}}</td>
+                    </tr>
+                    <tr>
+                        <td>生化检查小结</td>
+                        <td>{{biochemical.biochemicalSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseBiochemical"
+                        ng-click="initBiochemical()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--生化检查-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    血常规记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>白细胞</td>
+                        <td>{{bloodRoutine.WBC}}</td>
+                    </tr>
+                    <tr>
+                        <td>红细胞</td>
+                        <td>{{bloodRoutine.RBC}}</td>
+                    </tr>
+                    <tr>
+                        <td>血红蛋白</td>
+                        <td>{{bloodRoutine.HGB}}</td>
+                    </tr>
+                    <tr>
+                        <td>红细胞压积</td>
+                        <td>{{bloodRoutine.HCT}}</td>
+                    </tr>
+                    <tr>
+                        <td>血小板</td>
+                        <td>{{bloodRoutine.PLT}}</td>
+                    </tr>
+                    <tr>
+                        <td>平均红细胞体积</td>
+                        <td>{{bloodRoutine.MCV}}</td>
+                    </tr>
+                    <tr>
+                        <td>平均血红蛋白量</td>
+                        <td>{{bloodRoutine.MCH}}</td>
+                    </tr>
+                    <tr>
+                        <td>平均血红蛋白浓度</td>
+                        <td>{{bloodRoutine.MCHC}}</td>
+                    </tr>
+                    <tr>
+                        <td>平均血小板体积</td>
+                        <td>{{bloodRoutine.MPV}}</td>
+                    </tr>
+                    <tr>
+                        <td>血小板分布宽度</td>
+                        <td>{{bloodRoutine.PDW}}</td>
+                    </tr>
+                    <tr>
+                        <td>淋巴细胞比率</td>
+                        <td>{{bloodRoutine.LY1}}</td>
+                    </tr>
+                    <tr>
+                        <td>单核细胞比率</td>
+                        <td>{{bloodRoutine.MO1}}</td>
+                    </tr>
+                    <tr>
+                        <td>中性细胞比率</td>
+                        <td>{{bloodRoutine.GR1}}</td>
+                    </tr>
+                    <tr>
+                        <td>淋巴细胞</td>
+                        <td>{{bloodRoutine.LY}}</td>
+                    </tr>
+                    <tr>
+                        <td>单核细胞</td>
+                        <td>{{bloodRoutine.MO}}</td>
+                    </tr>
+                    <tr>
+                        <td>中性细胞</td>
+                        <td>{{bloodRoutine.GR}}</td>
+                    </tr>
+                    <tr>
+                        <td>血常规小结</td>
+                        <td>{{bloodRoutine.bloodRoutineSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseBloodRoutine"
+                        ng-click="initBloodRoutine()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--血常规-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    尿常规记录
+                </h1>
+            </div>
+            <div class="panel-body">
+                <table class="mb-table text-center table table-bordered table-responsive table-striped">
+                    <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>白细胞定性</td>
+                        <td>{{urineRoutine.LEU}}</td>
+                    </tr>
+                    <tr>
+                        <td>酮体定性</td>
+                        <td>{{urineRoutine.KET}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿胆原定性</td>
+                        <td>{{urineRoutine.URO}}</td>
+                    </tr>
+                    <tr>
+                        <td>胆红素定性</td>
+                        <td>{{urineRoutine.BIL}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿比重</td>
+                        <td>{{urineRoutine.SG}}</td>
+                    </tr>
+                    <tr>
+                        <td>红细胞定性</td>
+                        <td>{{urineRoutine.BLD}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿蛋白定性</td>
+                        <td>{{urineRoutine.PRO}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿糖定性</td>
+                        <td>{{urineRoutine.CLU}}</td>
+                    </tr>
+                    <tr>
+                        <td>亚硝酸盐定性</td>
+                        <td>{{urineRoutine.NIT}}</td>
+                    </tr>
+                    <tr>
+                        <td>PH值</td>
+                        <td>{{urineRoutine.PH}}</td>
+                    </tr>
+                    <tr>
+                        <td>尿常规小结</td>
+                        <td>{{urineRoutine.urineRoutineSum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info"
+                        data-toggle="modal"
+                        data-target="#reviseUrineRoutine"
+                        ng-click="initUrineRoutine()">修改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--尿常规-->
+
+<div class="modal fade" id="reviseInfo"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseInfoLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseInfoLabel">修改基本信息</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.info.name}">
+                        <label class="col-sm-4 control-label" for="name">姓名：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="name" ng-model="revise.info.name"
+                                   title="姓名"
+                                   placeholder="请设置姓名">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.info.gender}">
+                        <label class="col-sm-4 control-label" for="gender">性别：</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="gender" ng-model="revise.info.gender">
+                                <option value="" selected>请选择</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.info.time}">
+                        <label class="col-sm-4 control-label" for="time">体检日期：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="time"
+                                   ng-model="revise.info.time" title="体检日期"
+                                   placeholder="请设置体检日期">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseInfo()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseInternal"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseInternalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseInternalLabel">修改内科记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.internal.height}">
+                        <label class="col-sm-4 control-label" for="height">身高：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="height" ng-model="revise.internal.height"
+                                   title="身高"
+                                   placeholder="请设置身高">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.weight}">
+                        <label class="col-sm-4 control-label" for="weight">体重：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="weight" ng-model="revise.internal.weight"
+                                   title="体重"
+                                   placeholder="请设置体重">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.BMI}">
+                        <label class="col-sm-4 control-label" for="BMI">体重指数：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="BMI" ng-model="revise.internal.BMI"
+                                   title="体重指数"
+                                   placeholder="请设置体重指数">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.bloodPressure}">
+                        <label class="col-sm-4 control-label" for="bloodPressure">血压：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="bloodPressure" ng-model="revise.internal.bloodPressure"
+                                   title="血压"
+                                   placeholder="请设置血压">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.heartRate}">
+                        <label class="col-sm-4 control-label" for="heartRate">心律：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="heartRate" ng-model="revise.internal.heartRate"
+                                   title="心律"
+                                   placeholder="请设置心律">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.heart}">
+                        <label class="col-sm-4 control-label" for="heart">心界：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="heart" ng-model="revise.internal.heart"
+                                   title="心界"
+                                   placeholder="请设置心界">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.noise}">
+                        <label class="col-sm-4 control-label" for="noise">杂音：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="noise" ng-model="revise.internal.noise"
+                                   title="杂音"
+                                   placeholder="请设置杂音">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.liver}">
+                        <label class="col-sm-4 control-label" for="liver">肝脏：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="liver" ng-model="revise.internal.liver"
+                                   title="肝脏"
+                                   placeholder="请设置肝脏">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.spleen}">
+                        <label class="col-sm-4 control-label" for="spleen">脾：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="spleen" ng-model="revise.internal.spleen"
+                                   title="脾"
+                                   placeholder="请设置脾">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.lung}">
+                        <label class="col-sm-4 control-label" for="lung">肺：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="lung" ng-model="revise.internal.lung"
+                                   title="肺"
+                                   placeholder="请设置肺">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.internal.internalSum}">
+                        <label class="col-sm-4 control-label" for="internalSum">内科小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="internalSum" ng-model="revise.internal.internalSum"
+                                   title="内科小结"
+                                   placeholder="请设置内科小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseInternal()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseSurgical"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseSurgicalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseSurgicalLabel">修改外科记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.surgical.skin}">
+                        <label class="col-sm-4 control-label" for="skin">皮肤：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="skin" ng-model="revise.surgical.skin"
+                                   title="皮肤"
+                                   placeholder="请设置皮肤">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.surgical.thyroid}">
+                        <label class="col-sm-4 control-label" for="thyroid">甲状腺：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="thyroid" ng-model="revise.surgical.thyroid"
+                                   title="甲状腺"
+                                   placeholder="请设置甲状腺">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.surgical.lymphNode}">
+                        <label class="col-sm-4 control-label" for="lymphNode">淋巴结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="lymphNode" ng-model="revise.surgical.lymphNode"
+                                   title="淋巴结"
+                                   placeholder="请设置淋巴结">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.surgical.spin}">
+                        <label class="col-sm-4 control-label" for="spin">脊柱：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="spin" ng-model="revise.surgical.spin"
+                                   title="脊柱"
+                                   placeholder="请设置脊柱">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.surgical.limbJoint}">
+                        <label class="col-sm-4 control-label" for="limbJoint">四肢关节：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="limbJoint" ng-model="revise.surgical.limbJoint"
+                                   title="四肢关节"
+                                   placeholder="请设置四肢关节">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.surgical.surgicalSum}">
+                        <label class="col-sm-4 control-label" for="surgicalSum">外科小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="surgicalSum" ng-model="revise.surgical.surgicalSum"
+                                   title="外科小结"
+                                   placeholder="请设置外科小结">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseInternal()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseOphthalmology"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseOphthalmologyLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseOphthalmologyLabel">修改眼科记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.ophthalmology.conjunctiva}">
+                        <label class="col-sm-4 control-label" for="conjunctiva">结膜：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="conjunctiva" ng-model="revise.ophthalmology.conjunctiva"
+                                   title="结膜"
+                                   placeholder="请设置结膜">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.ophthalmology.fundus}">
+                        <label class="col-sm-4 control-label" for="fundus">眼底：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="fundus" ng-model="revise.ophthalmology.fundus"
+                                   title="眼底"
+                                   placeholder="请设置眼底">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.ophthalmology.iris}">
+                        <label class="col-sm-4 control-label" for="iris">虹膜：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="iris" ng-model="revise.ophthalmology.iris"
+                                   title="虹膜"
+                                   placeholder="请设置虹膜">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.ophthalmology.cornea}">
+                        <label class="col-sm-4 control-label" for="cornea">角膜：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="cornea" ng-model="revise.ophthalmology.cornea"
+                                   title="角膜"
+                                   placeholder="请设置角膜">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.ophthalmology.lens}">
+                        <label class="col-sm-4 control-label" for="lens">晶状体：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="lens" ng-model="revise.ophthalmology.lens"
+                                   title="晶状体"
+                                   placeholder="请设置晶状体">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.ophthalmology.ophthalmologySum}">
+                        <label class="col-sm-4 control-label" for="ophthalmologySum">眼科小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="ophthalmologySum"
+                                   ng-model="revise.ophthalmology.ophthalmologySum"
+                                   title="眼科小结"
+                                   placeholder="请设置眼科小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseOphthalmology()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseGynecology"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseGynecologyLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseGynecologyLabel">修改妇科记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.vulva}">
+                        <label class="col-sm-4 control-label" for="vulva">外阴：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="vulva" ng-model="revise.gynecology.vulva"
+                                   title="外阴"
+                                   placeholder="请设置外阴">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.vaginal}">
+                        <label class="col-sm-4 control-label" for="vaginal">阴道：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="vaginal" ng-model="revise.gynecology.vaginal"
+                                   title="阴道"
+                                   placeholder="请设置阴道">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.vaginalSecretion}">
+                        <label class="col-sm-4 control-label" for="vaginalSecretion">阴道分泌物：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="vaginalSecretion"
+                                   ng-model="revise.gynecology.vaginalSecretion"
+                                   title="阴道分泌物"
+                                   placeholder="请设置阴道分泌物">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.cervix}">
+                        <label class="col-sm-4 control-label" for="cervix">宫颈：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="cervix" ng-model="revise.gynecology.cervix"
+                                   title="宫颈"
+                                   placeholder="请设置宫颈">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.palace}">
+                        <label class="col-sm-4 control-label" for="palace">宫体：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="palace" ng-model="revise.gynecology.palace"
+                                   title="宫体"
+                                   placeholder="请设置宫体">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.leftAttachment}">
+                        <label class="col-sm-4 control-label" for="leftAttachment">左附件：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="leftAttachment" ng-model="revise.gynecology.leftAttachment"
+                                   title="左附件"
+                                   placeholder="请设置左附件">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.rightAttachment}">
+                        <label class="col-sm-4 control-label" for="vulva">右附件：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="rightAttachment"
+                                   ng-model="revise.gynecology.rightAttachment"
+                                   title="右附件"
+                                   placeholder="请设置右附件">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.gynecology.gynecologySum}">
+                        <label class="col-sm-4 control-label" for="vulva">妇科小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="gynecologySum" ng-model="revise.gynecology.gynecologySum"
+                                   title="妇科小结"
+                                   placeholder="请设置妇科小结">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseGynecology()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseInfraredMammogram"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseInfraredMammogramLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseInfraredMammogramLabel">修改红外线乳透记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.infraredMammogram.leftBreast}">
+                        <label class="col-sm-4 control-label" for="leftBreast">左乳所见：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="leftBreast" ng-model="revise.infraredMammogram.leftBreast"
+                                   title="左乳所见"
+                                   placeholder="请设置左乳所见">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.infraredMammogram.rightBreast}">
+                        <label class="col-sm-4 control-label" for="rightBreast">右乳所见：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="rightBreast" ng-model="revise.infraredMammogram.rightBreast"
+                                   title="右乳所见"
+                                   placeholder="请设置右乳所见">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.infraredMammogram.infraredMammogramSum}">
+                        <label class="col-sm-4 control-label" for="infraredMammogramSum">红外线乳透小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="infraredMammogramSum"
+                                   ng-model="revise.infraredMammogram.infraredMammogramSum"
+                                   title="红外线乳透小结"
+                                   placeholder="请设置红外线乳透小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseInfraredMammogram()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseBScan"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseBScanLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseBScanLabel">修改B超记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.BScan.BScan}">
+                        <label class="col-sm-4 control-label" for="BScan">B超所见：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="BScan" ng-model="revise.BScan.BScan"
+                                   title="B超所见"
+                                   placeholder="请设置B超所见">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.BScan.BScanSum}">
+                        <label class="col-sm-4 control-label" for="BScanSum">B超小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="BScanSum" ng-model="revise.BScan.BScanSum"
+                                   title="B超小结"
+                                   placeholder="请设置B超小结">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseBScan()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseBoneDensity"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseBoneDensityLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseBoneDensityLabel">修改骨密度记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.boneDensity.boneDensitySum}">
+                        <label class="col-sm-4 control-label" for="boneDensitySum">骨密度所见：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="boneDensitySum" ng-model="revise.boneDensity.boneDensitySum"
+                                   title="骨密度所见"
+                                   placeholder="请设置骨密度所见">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseBoneDensity()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseECG"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseECGLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseECGLabel">修改心电图记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.ECG.ECG}">
+                        <label class="col-sm-4 control-label" for="ECG">心电图所见：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="ECG" ng-model="revise.ECG.ECG"
+                                   title="心电图所见"
+                                   placeholder="请设置心电图所见">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.ECG.ECGSum}">
+                        <label class="col-sm-4 control-label" for="ECGSum">心电图小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="ECGSum" ng-model="revise.ECG.ECGSum"
+                                   title="心电图小结"
+                                   placeholder="请设置心电图小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseECG()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseXRay"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseXRayLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseXRayLabel">修改红外线乳透记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.XRay.XRay}">
+                        <label class="col-sm-4 control-label" for="XRay">X射线所见：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="XRay" ng-model="revise.XRay.XRay"
+                                   title="X射线所见"
+                                   placeholder="请设置X射线所见">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.XRay.XRaySum}">
+                        <label class="col-sm-4 control-label" for="XRaySum">X射线小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="XRaySum" ng-model="revise.XRay.XRaySum"
+                                   title="X射线小结"
+                                   placeholder="请设置X射线小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseXRay()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseBiochemical"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseBiochemicalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseBiochemicalLabel">修改生化检查记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.protein}">
+                        <label class="col-sm-4 control-label" for="protein">总蛋白：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="protein" ng-model="revise.biochemical.protein"
+                                   title="总蛋白"
+                                   placeholder="请设置总蛋白">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.albumin}">
+                        <label class="col-sm-4 control-label" for="albumin">白蛋白：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="albumin" ng-model="revise.biochemical.albumin"
+                                   title="白蛋白"
+                                   placeholder="请设置白蛋白">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.globulin}">
+                        <label class="col-sm-4 control-label" for="globulin">球蛋白：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="globulin" ng-model="revise.biochemical.globulin"
+                                   title="球蛋白"
+                                   placeholder="请设置球蛋白">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.AG}">
+                        <label class="col-sm-4 control-label" for="AG">白球比：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="AG" ng-model="revise.biochemical.AG"
+                                   title="白球比"
+                                   placeholder="请设置白球比">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.TBIL}">
+                        <label class="col-sm-4 control-label" for="TBIL">总胆红素：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="TBIL" ng-model="revise.biochemical.TBIL"
+                                   title="总胆红素"
+                                   placeholder="请设置总胆红素">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.DBIL}">
+                        <label class="col-sm-4 control-label" for="DBIL">直接胆红素：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="DBIL" ng-model="revise.biochemical.DBIL"
+                                   title="直接胆红素"
+                                   placeholder="请设置直接胆红素">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.IBIL}">
+                        <label class="col-sm-4 control-label" for="IBIL">间接胆红素：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="IBIL" ng-model="revise.biochemical.IBIL"
+                                   title="间接胆红素"
+                                   placeholder="请设置间接胆红素">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.ALT}">
+                        <label class="col-sm-4 control-label" for="ALT">谷丙转氨酶：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="ALT" ng-model="revise.biochemical.ALT"
+                                   title="谷丙转氨酶"
+                                   placeholder="请设置谷丙转氨酶">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.AST}">
+                        <label class="col-sm-4 control-label" for="AST">谷草转氨酶：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="AST" ng-model="revise.biochemical.AST"
+                                   title="谷草转氨酶"
+                                   placeholder="请设置谷草转氨酶">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.BUN}">
+                        <label class="col-sm-4 control-label" for="BUN">尿素氨：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="BUN" ng-model="revise.biochemical.BUN"
+                                   title="尿素氨"
+                                   placeholder="请设置尿素氨">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.CRE}">
+                        <label class="col-sm-4 control-label" for="CRE">肌酐：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="CRE" ng-model="revise.biochemical.CRE"
+                                   title="肌酐"
+                                   placeholder="请设置肌酐">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.UA}">
+                        <label class="col-sm-4 control-label" for="UA">尿酸：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="UA" ng-model="revise.biochemical.UA"
+                                   title="尿酸"
+                                   placeholder="请设置尿酸">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.TG}">
+                        <label class="col-sm-4 control-label" for="TG">甘油三酯：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="TG" ng-model="revise.biochemical.TG"
+                                   title="甘油三酯"
+                                   placeholder="请设置甘油三酯">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.CHO}">
+                        <label class="col-sm-4 control-label" for="CHO">总胆固醇：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="CHO" ng-model="revise.biochemical.CHO"
+                                   title="总胆固醇"
+                                   placeholder="请设置总胆固醇">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.HDLC}">
+                        <label class="col-sm-4 control-label" for="HDLC">高密度胆固醇：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="HDLC" ng-model="revise.biochemical.HDLC"
+                                   title="高密度胆固醇"
+                                   placeholder="请设置高密度胆固醇">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.LDLC}">
+                        <label class="col-sm-4 control-label" for="LDLC">低密度胆固醇：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="LDLC" ng-model="revise.biochemical.LDLC"
+                                   title="低密度胆固醇"
+                                   placeholder="请设置低密度胆固醇">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.GLU}">
+                        <label class="col-sm-4 control-label" for="GLU">葡萄糖：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="GLU" ng-model="revise.biochemical.GLU"
+                                   title="葡萄糖"
+                                   placeholder="请设置葡萄糖">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.ALP}">
+                        <label class="col-sm-4 control-label" for="ALP">碱性磷酸酶：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="ALP" ng-model="revise.biochemical.ALP"
+                                   title="碱性磷酸酶"
+                                   placeholder="请设置碱性磷酸酶">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.biochemical.biochemicalSum}">
+                        <label class="col-sm-4 control-label" for="biochemicalSum">生化检查小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="biochemicalSum" ng-model="revise.biochemical.biochemicalSum"
+                                   title="生化检查小结"
+                                   placeholder="请设置生化检查小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseBiochemical()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseBloodRoutine"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseBloodRoutineLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseBloodRoutineLabel">修改血常规记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.WBC}">
+                        <label class="col-sm-4 control-label" for="WBC">白细胞：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="WBC" ng-model="revise.bloodRoutine.WBC"
+                                   title="白细胞"
+                                   placeholder="请设置白细胞">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.RBC}">
+                        <label class="col-sm-4 control-label" for="RBC">红细胞：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="RBC" ng-model="revise.bloodRoutine.RBC"
+                                   title="红细胞"
+                                   placeholder="请设置红细胞">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.HGB}">
+                        <label class="col-sm-4 control-label" for="HGB">血红蛋白：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="HGB" ng-model="revise.bloodRoutine.HGB"
+                                   title="血红蛋白"
+                                   placeholder="请设置血红蛋白">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.HCT}">
+                        <label class="col-sm-4 control-label" for="HCT">红细胞压积：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="HCT" ng-model="revise.bloodRoutine.HCT"
+                                   title="红细胞压积"
+                                   placeholder="请设置红细胞压积">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.PLT}">
+                        <label class="col-sm-4 control-label" for="PLT">血小板：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="PLT" ng-model="revise.bloodRoutine.PLT"
+                                   title="血小板"
+                                   placeholder="请设置血小板">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.MCV}">
+                        <label class="col-sm-4 control-label" for="MCV">平均红细胞体积：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="MCV" ng-model="revise.bloodRoutine.MCV"
+                                   title="平均红细胞体积"
+                                   placeholder="请设置平均红细胞体积">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.MCH}">
+                        <label class="col-sm-4 control-label" for="MCH">平均血红蛋白量：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="MCH" ng-model="revise.bloodRoutine.MCH"
+                                   title="平均血红蛋白量"
+                                   placeholder="请设置平均血红蛋白量">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.MCHC}">
+                        <label class="col-sm-4 control-label" for="MCHC">平均血红蛋白浓度：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="MCHC" ng-model="revise.bloodRoutine.MCHC"
+                                   title="平均血红蛋白浓度"
+                                   placeholder="请设置平均血红蛋白浓度">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.MPV}">
+                        <label class="col-sm-4 control-label" for="MPV">平均血小板体积：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="MPV" ng-model="revise.bloodRoutine.MPV"
+                                   title="平均血小板体积"
+                                   placeholder="请设置平均血小板体积">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.PDW}">
+                        <label class="col-sm-4 control-label" for="PDW">血小板分布宽度：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="PDW" ng-model="revise.bloodRoutine.PDW"
+                                   title="血小板分布宽度"
+                                   placeholder="请设置血小板分布宽度">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.LY1}">
+                        <label class="col-sm-4 control-label" for="LY1">淋巴细胞比率：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="LY1" ng-model="revise.bloodRoutine.LY1"
+                                   title="淋巴细胞比率"
+                                   placeholder="请设置淋巴细胞比率">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.MO1}">
+                        <label class="col-sm-4 control-label" for="MO1">单核细胞比率：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="MO1" ng-model="revise.bloodRoutine.MO1"
+                                   title="单核细胞比率"
+                                   placeholder="请设置单核细胞比率">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.GR1}">
+                        <label class="col-sm-4 control-label" for="GR1">中性细胞比率：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="GR1" ng-model="revise.bloodRoutine.GR1"
+                                   title="中性细胞比率"
+                                   placeholder="请设置中性细胞比率">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.LY}">
+                        <label class="col-sm-4 control-label" for="LY">淋巴细胞：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="LY" ng-model="revise.bloodRoutine.LY"
+                                   title="淋巴细胞"
+                                   placeholder="请设置淋巴细胞">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.MO}">
+                        <label class="col-sm-4 control-label" for="MO">单核细胞：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="MO" ng-model="revise.bloodRoutine.MO"
+                                   title="单核细胞"
+                                   placeholder="请设置单核细胞">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.GR}">
+                        <label class="col-sm-4 control-label" for="GR">中性细胞：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="GR" ng-model="revise.bloodRoutine.GR"
+                                   title="中性细胞"
+                                   placeholder="请设置中性细胞">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.bloodRoutine.bloodRoutineSum}">
+                        <label class="col-sm-4 control-label" for="bloodRoutineSum">血常规小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="bloodRoutineSum"
+                                   ng-model="revise.bloodRoutine.bloodRoutineSum"
+                                   title="血常规小结"
+                                   placeholder="请设置血常规小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseBloodRoutine()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reviseUrineRoutine"
+     tabindex="-1" role="dialog"
+     aria-labelledby="reviseUrineRoutineLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="reviseUrineRoutineLabel">修改尿常规记录</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.LEU}">
+                        <label class="col-sm-4 control-label" for="LEU">白细胞定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="LEU" ng-model="revise.urineRoutine.LEU"
+                                   title="白细胞定性"
+                                   placeholder="请设置白细胞定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.KET}">
+                        <label class="col-sm-4 control-label" for="KET">酮体定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="KET" ng-model="revise.urineRoutine.KET"
+                                   title="酮体定性"
+                                   placeholder="请设置酮体定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.URO}">
+                        <label class="col-sm-4 control-label" for="URO">尿胆原定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="URO" ng-model="revise.urineRoutine.URO"
+                                   title="尿胆原定性"
+                                   placeholder="请设置尿胆原定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.BIL}">
+                        <label class="col-sm-4 control-label" for="BIL">胆红素定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="BIL" ng-model="revise.urineRoutine.BIL"
+                                   title="胆红素定性"
+                                   placeholder="请设置胆红素定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.SG}">
+                        <label class="col-sm-4 control-label" for="SG">尿比重：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="SG" ng-model="revise.urineRoutine.SG"
+                                   title="尿比重"
+                                   placeholder="请设置尿比重">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.BLD}">
+                        <label class="col-sm-4 control-label" for="BLD">红细胞定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="BLD" ng-model="revise.urineRoutine.BLD"
+                                   title="红细胞定性"
+                                   placeholder="请设置红细胞定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.PRO}">
+                        <label class="col-sm-4 control-label" for="PRO">尿蛋白定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="PRO" ng-model="revise.urineRoutine.PRO"
+                                   title="尿蛋白定性"
+                                   placeholder="请设置尿蛋白定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.CLU}">
+                        <label class="col-sm-4 control-label" for="CLU">尿糖定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="CLU" ng-model="revise.urineRoutine.CLU"
+                                   title="尿糖定性"
+                                   placeholder="请设置尿糖定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.NIT}">
+                        <label class="col-sm-4 control-label" for="NIT">亚硝酸盐定性：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="NIT" ng-model="revise.urineRoutine.NIT"
+                                   title="亚硝酸盐定性"
+                                   placeholder="请设置亚硝酸盐定性">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.PH}">
+                        <label class="col-sm-4 control-label" for="PH">PH值：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="PH" ng-model="revise.urineRoutine.PH"
+                                   title="PH值"
+                                   placeholder="请设置PH值">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':error.urineRoutine.urineRoutineSum}">
+                        <label class="col-sm-4 control-label" for="urineRoutineSum">尿常规小结：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="urineRoutineSum"
+                                   ng-model="revise.urineRoutine.urineRoutineSum"
+                                   title="尿常规小结"
+                                   placeholder="请设置尿常规小结">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="reviseUrineRoutine()">提交</button>
+                <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
