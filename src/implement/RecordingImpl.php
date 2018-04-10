@@ -63,4 +63,14 @@ class RecordingImpl implements IRecording
         $this->mysql->closeConnection();
         return $result;
     }
+
+    public function deleteRecording($recordingId, $userId)
+    {
+        $query = 'DELETE FROM recording WHERE recording_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $recordingId, $userId);
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }
