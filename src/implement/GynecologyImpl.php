@@ -8,6 +8,7 @@
 
 require_once '../interface/IGynecology.php';
 require_once '../util/Mysql.php';
+
 class GynecologyImpl implements IGynecology
 {
     private $mysql;
@@ -33,4 +34,14 @@ class GynecologyImpl implements IGynecology
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getGynecology($gynecologyId, $userId)
+    {
+        $query = 'SELECT * FROM gynecology WHERE gynecology_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $gynecologyId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

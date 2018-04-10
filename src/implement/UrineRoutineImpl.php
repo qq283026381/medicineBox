@@ -46,4 +46,14 @@ class UrineRoutineImpl implements IUrineRoutine
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getUrineRoutine($urineRoutineId, $userId)
+    {
+        $query = 'SELECT * FROM urine_routine WHERE urine_routine_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $urineRoutineId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

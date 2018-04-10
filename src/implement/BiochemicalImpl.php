@@ -53,4 +53,15 @@ class BiochemicalImpl implements IBiochemical
         $this->mysql->closeConnection();
         return array('result' => $result, 'number' => $number);
     }
+
+    public function getBiochemical($biochemicalId, $userId)
+    {
+        $query = 'SELECT * FROM biochemical WHERE biochemical_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $biochemicalId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

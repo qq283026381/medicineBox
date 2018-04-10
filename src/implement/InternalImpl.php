@@ -33,4 +33,14 @@ class InternalImpl implements IInternal
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getInternal($internalId, $userId)
+    {
+        $query = 'SELECT * FROM internal WHERE internal_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $internalId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

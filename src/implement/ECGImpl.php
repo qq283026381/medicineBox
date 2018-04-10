@@ -34,4 +34,14 @@ class ECGImpl implements IECG
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getECG($ECGId, $userId)
+    {
+        $query = 'SELECT * FROM ecg WHERE ECG_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $ECGId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

@@ -34,4 +34,14 @@ class BoneDensityImpl implements IBoneDensity
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getBoneDensity($boneDensityId, $userId)
+    {
+        $query = 'SELECT * FROM bone_density WHERE bone_density_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $boneDensityId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

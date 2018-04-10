@@ -33,4 +33,15 @@ class SurgicalImpl implements ISurgical
         $this->mysql->closeConnection();
         return array('result' => $result, 'number' => $number);
     }
+
+    public function getSurgical($surgicalId, $userId)
+    {
+        $query = 'SELECT * FROM surgical WHERE surgical_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $surgicalId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

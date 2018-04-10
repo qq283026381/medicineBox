@@ -25,7 +25,7 @@ class BloodRoutineImpl implements IBloodRoutine
 
     public function addBloodRoutine($bloodRoutine)
     {
-        $query = 'INSERT INTO blood_routine (user_id, WBC, PBC, HGB, HCT, PLT, MCV, MCH, MCHC, MPV, PDW, `LY%`, `MO%`, `GR%`, LY, MO, GR,blood_routine_sum) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        $query = 'INSERT INTO blood_routine (user_id, WBC, RBC, HGB, HCT, PLT, MCV, MCH, MCHC, MPV, PDW, `LY%`, `MO%`, `GR%`, LY, MO, GR,blood_routine_sum) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('idddddddddddddddds', $bloodRoutine->getUserId(), $bloodRoutine->getWBC(), $bloodRoutine->getRBC(), $bloodRoutine->getHGB(), $bloodRoutine->getHCT(), $bloodRoutine->getPLT(), $bloodRoutine->getMCV(), $bloodRoutine->getMCH(), $bloodRoutine->getMCHC(), $bloodRoutine->getMPV(), $bloodRoutine->getPDW(), $bloodRoutine->getLY1(), $bloodRoutine->getMO1(), $bloodRoutine->getGR1(), $bloodRoutine->getLY(), $bloodRoutine->getMO(), $bloodRoutine->getGR(), $bloodRoutine->getBloodRoutineSum());
         $result = $stmt->execute();
@@ -34,4 +34,14 @@ class BloodRoutineImpl implements IBloodRoutine
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getBloodRoutine($bloodRoutineId, $userId)
+    {
+        $query = 'SELECT * FROM blood_routine WHERE blood_routine_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $bloodRoutineId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

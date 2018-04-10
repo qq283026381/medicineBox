@@ -33,4 +33,14 @@ class BScanImpl implements IBScan
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getBScan($BScanId, $userId)
+    {
+        $query = 'SELECT * FROM b_scan WHERE B_scan_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $BScanId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }

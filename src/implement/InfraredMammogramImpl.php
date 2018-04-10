@@ -34,4 +34,14 @@ class InfraredMammogramImpl implements IInfraredMammogram
         return array('result' => $result, 'number' => $number);
     }
 
+    public function getInfraredMammogram($infraredMammogramId, $userId)
+    {
+        $query = 'SELECT * FROM infrared_mammogram WHERE infrared_mammogram_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ii', $infraredMammogramId, $userId);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
+    }
 }
