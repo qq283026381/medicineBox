@@ -1,3 +1,13 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header" style="margin-top: 0;">
+            <h1>完善体检记录
+                <small>{{info.name}}于{{info.time}}的体检记录</small>
+            </h1>
+        </div>
+        <p class="lead bg-danger" style="padding: 15px;">此页面仅能进入一次，关闭或切换页面后需通过修改功能进行录入</p>
+    </div>
+</div>
 <div class="row" ng-hide="status.internal">
     <div class="col-sm-12">
         <div class="panel panel-info">
@@ -729,5 +739,10 @@
                 <button class="btn btn-info" ng-click="addUrineRoutine()">确定</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="row" ng-show="checkStatus()">
+    <div class="col-sm-12">
+        <p class="lead">所有体检项目添加完毕，点击<a href="recording">返回</a></p>
     </div>
 </div>
