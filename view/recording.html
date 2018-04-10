@@ -26,11 +26,12 @@
                 <td>{{item.gender}}</td>
                 <td>{{item.time}}</td>
                 <td>
-                    <span class="fa fa-search operation operation-search"
-                          title="查看"
-                          data-toggle="modal"
-                          data-target="#search"
-                          ng-click="setSearchItem($index)"></span>
+                    <a href="recording/search" style="color: #000;">
+                        <span class="fa fa-search operation operation-search"
+                                     title="查看"
+                                     ng-click="setSearchItem(item)">
+
+                        </span></a>
                     <span class="fa fa-times operation operation-remove"
                           title="删除"
                           ng-click="deleteMedicine($index)"></span>
