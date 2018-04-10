@@ -72,4 +72,7 @@ medicineBox.controller('recordingCtrl', ['$scope', '$http', '$filter', 'toaster'
             })
         }
     };
+    $scope.setSearchItem = function (item) {
+        sessionStorage.setItem('searchItem', angular.toJson(item));
+    }
 }]);
