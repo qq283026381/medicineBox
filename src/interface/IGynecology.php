@@ -9,4 +9,6 @@
 interface IGynecology
 {
     public function addGynecology($gynecology);
+
+    public function getGynecology($gynecologyId, $userId);
 }

@@ -9,4 +9,6 @@
 interface IECG
 {
     public function addECG($ECG);
+
+    public function getECG($ECGId, $userId);
 }

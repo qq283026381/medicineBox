@@ -9,4 +9,6 @@
 interface IOphthalmology
 {
     public function addOphthalmology($ophthalmology);
+
+    public function getOphthalmology($ophthalmologyId, $userId);
 }

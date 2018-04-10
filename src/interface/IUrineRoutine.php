@@ -9,4 +9,6 @@
 interface IUrineRoutine
 {
     public function addUrineRoutine($urineRoutine);
+
+    public function getUrineRoutine($urineRoutineId, $userId);
 }

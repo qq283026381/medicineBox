@@ -9,4 +9,6 @@
 interface IBScan
 {
     public function addBScan($BScan);
+
+    public function getBScan($BScanId, $userId);
 }

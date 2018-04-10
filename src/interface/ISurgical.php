@@ -9,4 +9,6 @@
 interface ISurgical
 {
     public function addSurgical($surgical);
+
+    public function getSurgical($surgicalId, $userId);
 }

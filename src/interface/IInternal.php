@@ -9,4 +9,6 @@
 interface IInternal
 {
     public function addInternal($internal);
+
+    public function getInternal($internalId,$userId);
 }

@@ -9,4 +9,6 @@
 interface IBiochemical
 {
     public function addBiochemical($biochemical);
+
+    public function getBiochemical($biochemicalId, $userId);
 }
