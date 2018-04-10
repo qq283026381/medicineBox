@@ -19,6 +19,8 @@ if ($tools->checkAuthority() !== 'true') {
             $content = array('result' => true);
             while ($row = $result->fetch_assoc()) {
                 $content['data'] = array(
+                    'name' => $row['name'],
+                    'time' => $row['time'],
                     'gender' => $row['gender'],
                     'internal' => $row['internal_id'],
                     'surgical' => $row['surgical_id'],
