@@ -1,10 +1,8 @@
 medicineBox.controller('newRecordingCtrl', ['$scope', '$http', 'toaster', function ($scope, $http, toaster) {
-    /*var number = sessionStorage.getItem('newRecord');*/
-    var number = 1;
+    var number = sessionStorage.getItem('newRecord');
     if (!number) {
-        alert('非法访问');
         setTimeout(function () {
-            location.href = 'main';
+            location.href = 'recording';
         }, 200);
     } else {
         $scope.error = {
@@ -262,6 +260,10 @@ medicineBox.controller('newRecordingCtrl', ['$scope', '$http', 'toaster', functi
                         ophthalmology: t.data.data.ophthalmology !== -1,
                         surgical: t.data.data.surgical !== -1,
                         urineRoutine: t.data.data.urine_routine !== -1
+                    };
+                    $scope.info = {
+                        name: t.data.data.name,
+                        time: t.data.data.time
                     };
                 } else {
                     toaster.pop('获取体检记录失败，请联系管理员');
@@ -549,6 +551,15 @@ medicineBox.controller('newRecordingCtrl', ['$scope', '$http', 'toaster', functi
             var flag = true;
             angular.forEach(error, function (value) {
                 if (value) {
+                    flag = false;
+                }
+            });
+            return flag;
+        };
+        $scope.checkStatus = function () {
+            var flag = true;
+            angular.forEach($scope.status, function (value) {
+                if (!value) {
                     flag = false;
                 }
             });
