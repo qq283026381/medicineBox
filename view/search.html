@@ -57,7 +57,7 @@
                     内科记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.internal==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -118,6 +118,10 @@
                         ng-click="initInternal()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.internal==-1">
+                暂无内科记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -130,7 +134,7 @@
                     外科记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.surgical==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -171,6 +175,10 @@
                         ng-click="initSurgical()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.surgical==-1">
+                暂无外科记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -183,7 +191,7 @@
                     眼科记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.ophthalmology==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -224,11 +232,15 @@
                         ng-click="initOphthalmology()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.ophthalmology==-1">
+                暂无眼科记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
 <!--眼科-->
-<div class="row">
+<div class="row" ng-hide="info.gender=='男'">
     <div class="col-sm-12">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -236,7 +248,7 @@
                     妇科记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.gynecology==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -285,6 +297,10 @@
                         ng-click="initGynecology()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.gynecology==-1">
+                暂无妇科记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -297,7 +313,7 @@
                     红外线乳透记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.infrared_mammogram==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -326,6 +342,10 @@
                         ng-click="initInfraredMammogram()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.infrared_mammogram==-1">
+                暂无红外线乳透记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -338,7 +358,7 @@
                     B超记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.B_scan==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -363,6 +383,10 @@
                         ng-click="initBScan()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.B_scan==-1">
+                暂无B超记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -375,7 +399,7 @@
                     骨密度记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.bone_density==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -396,6 +420,10 @@
                         ng-click="initBoneDensity()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.bone_density==-1">
+                暂无骨密度记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -408,7 +436,7 @@
                     心电图记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.ECG==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -433,6 +461,10 @@
                         ng-click="initECG()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.ECG==-1">
+                暂无心电图记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -445,7 +477,7 @@
                     X射线记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.X_ray==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -470,6 +502,10 @@
                         ng-click="initXRay()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.X_ray==-1">
+                暂无X射线记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -482,7 +518,7 @@
                     生化检查记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.biochemical==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -575,6 +611,10 @@
                         ng-click="initBiochemical()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.biochemical==-1">
+                暂无生化检查记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -587,7 +627,7 @@
                     血常规记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.blood_routine==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -672,6 +712,10 @@
                         ng-click="initBloodRoutine()">修改
                 </button>
             </div>
+            <div class="panel-body" ng-show="info.blood_routine==-1">
+                暂无血常规记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -684,7 +728,7 @@
                     尿常规记录
                 </h1>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" ng-hide="info.urine_routine==-1">
                 <table class="mb-table text-center table table-bordered table-responsive table-striped">
                     <thead>
                     <tr>
@@ -744,6 +788,10 @@
                         data-target="#reviseUrineRoutine"
                         ng-click="initUrineRoutine()">修改
                 </button>
+            </div>
+            <div class="panel-body" ng-show="info.urine_routine==-1">
+                暂无尿常规记录，是否进行添加？
+                <button class="btn btn-info">添加</button>
             </div>
         </div>
     </div>
