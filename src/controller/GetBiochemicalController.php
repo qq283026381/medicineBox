@@ -20,6 +20,7 @@ if ($tools->checkAuthority() !== 'true') {
             if ($result['source']->num_rows > 0) {
                 $row = $result['source']->fetch_assoc();
                 $result['data'] = array(
+                    'id' => $row['biochemical_id'],
                     'protein' => $row['protein'],
                     'albumin' => $row['albumin'],
                     'globulin' => $row['globulin'],

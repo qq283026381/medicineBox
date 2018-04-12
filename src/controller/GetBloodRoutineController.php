@@ -20,6 +20,7 @@ if ($tools->checkAuthority() !== 'true') {
             if ($result['source']->num_rows > 0) {
                 $row = $result['source']->fetch_assoc();
                 $result['data'] = array(
+                    'id' => $row['blood_routine_id'],
                     'WBC' => $row['WBC'],
                     'RBC' => $row['RBC'],
                     'HGB' => $row['HGB'],

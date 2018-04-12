@@ -20,6 +20,7 @@ if ($tools->checkAuthority() !== 'true') {
             if ($result['source']->num_rows > 0) {
                 $row = $result['source']->fetch_assoc();
                 $result['data'] = array(
+                    'id' => $row['ophthalmology_id'],
                     'conjunctiva' => $row['conjunctiva'],
                     'fundus' => $row['fundus'],
                     'iris' => $row['iris'],
