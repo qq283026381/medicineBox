@@ -43,4 +43,14 @@ class OphthalmologyImpl implements IOphthalmology
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseOphthalmology($ophthalmology, $ophthalmologyId)
+    {
+        $query = 'UPDATE ophthalmology SET conjunctiva=?,fundus=?,iris=?,cornea=?,lens=?,ophthalmology_sum=? WHERE ophthalmology_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssssssii', $ophthalmology->getConjunctiva(), $ophthalmology->getFundus(), $ophthalmology->getIris(), $ophthalmology->getCornea(), $ophthalmology->getLens(), $ophthalmology->getOphthalmologySum(), $ophthalmologyId, $ophthalmology->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

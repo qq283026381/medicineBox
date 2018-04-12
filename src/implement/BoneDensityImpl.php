@@ -44,4 +44,14 @@ class BoneDensityImpl implements IBoneDensity
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseBoneDensity($boneDensity, $boneDensityId)
+    {
+        $query = 'UPDATE bone_density SET bone_density_sum=? WHERE bone_density_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('sii', $boneDensity->getBoneDensitySum(), $boneDensityId, $boneDensity->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

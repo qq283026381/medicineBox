@@ -44,4 +44,14 @@ class ECGImpl implements IECG
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseECG($ECG, $ECGId)
+    {
+        $query = 'UPDATE ecg SET ECG=?,ECG_sum=? WHERE ECG_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssii', $ECG->getECG(), $ECG->getECGSum(), $ECGId, $ECG->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

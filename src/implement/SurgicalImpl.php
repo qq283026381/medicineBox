@@ -44,4 +44,22 @@ class SurgicalImpl implements ISurgical
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseSurgical($surgical, $surgicalId)
+    {
+        $query = 'UPDATE surgical SET skin=?,thyroid=?,lymph_node=?,spin=?,limb_joint=?,surgical_sum=? WHERE surgical_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssssssii',
+            $surgical->getSkin(),
+            $surgical->getThyroid(),
+            $surgical->getLymphNode(),
+            $surgical->getSpin(),
+            $surgical->getLimbJoint(),
+            $surgical->getSurgicalSum(),
+            $surgicalId,
+            $surgical->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

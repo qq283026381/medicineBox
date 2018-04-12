@@ -44,4 +44,14 @@ class BloodRoutineImpl implements IBloodRoutine
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseBloodRoutine($bloodRoutine, $bloodRoutineId)
+    {
+        $query = 'UPDATE blood_routine SET WBC=?,RBC=?,HGB=?,HCT=?,PLT=?,MCV=?,MCH=?,MCHC=?,MPV=?,PDW=?,`LY%`=?,`MO%`=?,`GR%`=?,LY=?,MO=?,GR=?,blood_routine_sum=? WHERE blood_routine_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ddddddddddddddddsii', $bloodRoutine->getWBC(), $bloodRoutine->getRBC(), $bloodRoutine->getHGB(), $bloodRoutine->getHCT(), $bloodRoutine->getPLT(), $bloodRoutine->getMCV(), $bloodRoutine->getMCH(), $bloodRoutine->getMCHC(), $bloodRoutine->getMPV(), $bloodRoutine->getPDW(), $bloodRoutine->getLY1(), $bloodRoutine->getMO1(), $bloodRoutine->getGR1(), $bloodRoutine->getLY(), $bloodRoutine->getMO(), $bloodRoutine->getGR(), $bloodRoutine->getBloodRoutineSum(), $bloodRoutineId, $bloodRoutine->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

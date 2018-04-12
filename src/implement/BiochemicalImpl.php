@@ -64,4 +64,35 @@ class BiochemicalImpl implements IBiochemical
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseBiochemical($biochemical, $biochemicalId)
+    {
+        $query = 'UPDATE biochemical SET protein=?,albumin=?,globulin=?,`A/G`=?,TBIL=?,DBIL=?,IBIL=?,ALT=?,AST=?,BUN=?,CRE=?,UA=?,TG=?,CHO=?,`HDL-C`=?,`LDL-C`=?,GLU=?,ALP=?,biochemical_sum=? WHERE biochemical_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ddddddddddddddddddsii',
+            $biochemical->getProtein(),
+            $biochemical->getAlbumin(),
+            $biochemical->getGlobulin(),
+            $biochemical->getAG(),
+            $biochemical->getTBIL(),
+            $biochemical->getDBIL(),
+            $biochemical->getIBIL(),
+            $biochemical->getALT(),
+            $biochemical->getAST(),
+            $biochemical->getBUN(),
+            $biochemical->getCRE(),
+            $biochemical->getUA(),
+            $biochemical->getTG(),
+            $biochemical->getCHO(),
+            $biochemical->getHDLC(),
+            $biochemical->getLDLC(),
+            $biochemical->getGLU(),
+            $biochemical->getALP(),
+            $biochemical->getBiochemicalSum(),
+            $biochemicalId,
+            $biochemical->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

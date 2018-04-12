@@ -56,4 +56,26 @@ class UrineRoutineImpl implements IUrineRoutine
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseUrineRoutine($urineRoutine, $urineRoutineId)
+    {
+        $query = 'UPDATE urine_routine SET LEU=?,KET=?,URO=?,BIL=?,SG=?,BLD=?,PRO=?,CLU=?,NIT=?,PH=?,urine_routine_sum=? WHERE urine_routine_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssssdssssdsii', $urineRoutine->getLEU(),
+            $urineRoutine->getKET(),
+            $urineRoutine->getURO(),
+            $urineRoutine->getBIL(),
+            $urineRoutine->getSG(),
+            $urineRoutine->getBLD(),
+            $urineRoutine->getPRO(),
+            $urineRoutine->getCLU(),
+            $urineRoutine->getNIT(),
+            $urineRoutine->getPH(),
+            $urineRoutine->getUrineRoutineSum(),
+            $urineRoutineId,
+            $urineRoutine->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

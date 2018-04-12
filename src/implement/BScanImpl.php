@@ -43,4 +43,14 @@ class BScanImpl implements IBScan
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseBScan($BScan, $BScanId)
+    {
+        $query = 'UPDATE B_scan SET B_scan=?,B_scan_sum=? WHERE B_scan_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssii', $BScan->getBScan(), $BScan->getBScanSum(), $BScanId, $BScan->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

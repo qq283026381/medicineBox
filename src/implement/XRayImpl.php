@@ -44,4 +44,14 @@ class XRayImpl implements IXRay
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseXRay($XRay, $XRayId)
+    {
+        $query = 'UPDATE X_ray SET X_ray=?,X_ray_sum=? WHERE X_ray_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssii', $XRay->getXRay(), $XRay->getXRaySum(), $XRayId, $XRay->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

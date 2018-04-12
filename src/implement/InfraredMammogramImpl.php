@@ -44,4 +44,14 @@ class InfraredMammogramImpl implements IInfraredMammogram
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseInfraredMammogram($infraredMammogram, $infraredMammogramId)
+    {
+        $query = 'UPDATE infrared_mammogram SET left_breast=?,right_breast=?,infrared_mammogram_sum=? WHERE infrared_mammogram_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('sssii', $infraredMammogram->getLeftBreast(), $infraredMammogram->getRightBreast(), $infraredMammogram->getInfraredMammogramSum(), $infraredMammogramId, $infraredMammogram->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

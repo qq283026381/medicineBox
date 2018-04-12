@@ -43,4 +43,27 @@ class InternalImpl implements IInternal
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseInternal($internal, $internalId)
+    {
+        $query = 'UPDATE internal SET height=? , weight=? ,BMI=?,blood_pressure=?,heart_rate=?,heart=?,noise=?,liver=?,spleen=?,lung=?,internal_sum=? WHERE internal_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('iddssssssssii',
+            $internal->getHeight(),
+            $internal->getWeight(),
+            $internal->getBMI(),
+            $internal->getBloodPressure(),
+            $internal->getHeartRate(),
+            $internal->getHeart(),
+            $internal->getNoise(),
+            $internal->getLiver(),
+            $internal->getSpleen(),
+            $internal->getLung(),
+            $internal->getInternalSum(),
+            $internalId,
+            $internal->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

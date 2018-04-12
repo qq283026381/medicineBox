@@ -73,4 +73,14 @@ class RecordingImpl implements IRecording
         $this->mysql->closeConnection();
         return array('result' => $result);
     }
+
+    public function reviseRecording($recording, $recordingId)
+    {
+        $query = 'UPDATE recording SET name=?,gender=?,time=? WHERE recording_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('sssii', $recording->getName(), $recording->getGender(), $recording->getTime(), $recordingId, $recording->getUserId());
+        $result = $stmt->execute();
+        $this->mysql->closeConnection();
+        return array('result' => $result);
+    }
 }

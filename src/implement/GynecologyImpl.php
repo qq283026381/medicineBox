@@ -44,4 +44,13 @@ class GynecologyImpl implements IGynecology
         $this->mysql->closeConnection();
         return array('result' => $result, 'source' => $source);
     }
+
+    public function reviseGynecology($gynecology, $gynecologyId)
+    {
+        $query = 'UPDATE gynecology SET vulva=?,vaginal=?,vaginal_secretion=?,cervix=?,palace=?,left_attachment=?,right_attachment=?,gynecology_sum=? WHERE gynecology_id=? AND user_id=?';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('ssssssssii', $gynecology->getVulva(), $gynecology->getVaginal(), $gynecology->getVaginalSecretion(), $gynecology->getCervix(), $gynecology->getPalace(), $gynecology->getLeftAttachment(), $gynecology->getRightAttachment(), $gynecology->getGynecologySum(), $gynecologyId, $gynecology->getUserId());
+        $result = $stmt->execute();
+        return array('result' => $result);
+    }
 }
