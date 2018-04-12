@@ -73,13 +73,13 @@ medicineBox.controller('recordingCtrl', ['$scope', '$http', '$filter', 'toaster'
         }
     };
     $scope.setSearchItem = function (item) {
-        sessionStorage.setItem('searchItem', angular.toJson(item));
+        sessionStorage.setItem('searchItem', item.id);
     };
     $scope.deleteRecording=function (index,id) {
         var affirmance = confirm('确定删除序号为' + index + '的体检记录吗？');
         if (affirmance) {
             $http.post('DeleteRecording.do',{'id':id}).then(function (t) {
-                if(t.data.data){
+                if(t.data.result){
                     toaster.pop('success','','删除成功');
                     getRecordings();
                 }else{
