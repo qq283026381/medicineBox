@@ -17,4 +17,6 @@ interface IRecording
     public function getRecording($recordingId);
 
     public function deleteRecording($recordingId, $userId);
+
+    public function reviseRecording($recording, $recordingId);
 }

@@ -11,4 +11,6 @@ interface IGynecology
     public function addGynecology($gynecology);
 
     public function getGynecology($gynecologyId, $userId);
+
+    public function reviseGynecology($gynecology, $gynecologyId);
 }

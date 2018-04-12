@@ -11,4 +11,6 @@ interface IXRay
     public function addXRay($XRay);
 
     public function getXRay($XRayId, $userId);
+
+    public function reviseXRay($XRay, $XRayId);
 }

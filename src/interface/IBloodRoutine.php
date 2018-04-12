@@ -11,4 +11,6 @@ interface IBloodRoutine
     public function addBloodRoutine($bloodRoutine);
 
     public function getBloodRoutine($bloodRoutineId, $userId);
+
+    public function reviseBloodRoutine($bloodRoutine, $bloodRoutineId);
 }

@@ -11,4 +11,6 @@ interface ISurgical
     public function addSurgical($surgical);
 
     public function getSurgical($surgicalId, $userId);
+
+    public function reviseSurgical($surgical, $surgicalId);
 }

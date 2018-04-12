@@ -11,4 +11,6 @@ interface IInfraredMammogram
     public function addInfraredMammogram($infraredMammogram);
 
     public function getInfraredMammogram($infraredMammogramId, $userId);
+
+    public function reviseInfraredMammogram($infraredMammogram, $infraredMammogramId);
 }

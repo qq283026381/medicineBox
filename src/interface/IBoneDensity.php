@@ -11,4 +11,6 @@ interface IBoneDensity
     public function addBoneDensity($boneDensity);
 
     public function getBoneDensity($boneDensityId, $userId);
+
+    public function reviseBoneDensity($boneDensity, $boneDensityId);
 }
