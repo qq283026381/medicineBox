@@ -210,7 +210,6 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
         /***
          * 当以上监听器全部取消后，判断两次输入密码是否相同、邮箱格式是否合法以及手机号格式输入是否合法
          * 若密码相同、邮箱格式合法且手机号输入合法，则取消对确认密码、设置邮箱和手机号输入的监听，并对用户信息进行注册
-         * TODO 需要对密码进行加密处理，尚未完成后台接口，暂滞空
          */
         if (!$scope.register.error.correct &&
             !$scope.register.error.emailFormat &&
@@ -247,7 +246,6 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
      * @param $event 处理默认事件
      * 对手机号输入进行判断，若未输入11位手机号则弹出错误提示
      * 点击获取验证码后，在deadline的时间周期内不允许再次点击
-     * TODO 尚未完成后台接口，暂滞空
      */
     $scope.getCode = function ($event) {
         $event.preventDefault();
