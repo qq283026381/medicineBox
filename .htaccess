@@ -3,6 +3,6 @@ RewriteEngine On
 # 设置404页面
 ErrorDocument 404 /medicineBox/
 # 将do请求转换成php请求
-RewriteRule ^/?([a-zA-Z/]+)\.do$ src/controller/$1Controller.php [L]
+RewriteRule ^/?([a-zA-Z/]+)\.do$ /medicineBox/src/controller/$1Controller.php [L]
 # 将page页面请求转换成html页面请求
-RewriteRule ^/?([a-z/]+)\.page$ view/$1.html [L]
+RewriteRule ^/?([a-z/]+)\.page$ /medicineBox/view/$1.html [L]
