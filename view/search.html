@@ -71,7 +71,15 @@
                         <td>{{internal.height}}</td>
                     </tr>
                     <tr>
-                        <td>体重</td>
+                        <td>
+                            <a type="button"
+                               ng-click="test()"
+                               data-toggle="modal"
+                               data-target="#weightChart"
+                               style="cursor:pointer;text-decoration:none;">
+                                体重
+                            </a>
+                        </td>
                         <td>{{internal.weight}}</td>
                     </tr>
                     <tr>
@@ -542,84 +550,124 @@
                     <tr>
                         <th>项目</th>
                         <th>内容</th>
+                        <th>参考值</th>
+                        <th>提示</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>总蛋白</td>
+                        <td>总蛋白g/L</td>
                         <td>{{biochemical.protein}}</td>
+                        <td>{{standard.biochemical.protein}}</td>
+                        <td>{{tips.biochemical.protein}}</td>
                     </tr>
                     <tr>
-                        <td>白蛋白</td>
+                        <td>白蛋白g/L</td>
                         <td>{{biochemical.albumin}}</td>
+                        <td>{{standard.biochemical.albumin}}</td>
+                        <td>{{tips.biochemical.albumin}}</td>
                     </tr>
                     <tr>
                         <td>球蛋白</td>
                         <td>{{biochemical.globulin}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>白球比</td>
                         <td>{{biochemical.AG}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>总胆红素</td>
+                        <td>总胆红素umol/L</td>
                         <td>{{biochemical.TBIL}}</td>
+                        <td>{{standard.biochemical.TBIL}}</td>
+                        <td>{{tips.biochemical.TBIL}}</td>
                     </tr>
                     <tr>
-                        <td>直接胆红素</td>
+                        <td>直接胆红素umol/L</td>
                         <td>{{biochemical.DBIL}}</td>
+                        <td>{{standard.biochemical.DBIL}}</td>
+                        <td>{{tips.biochemical.DBIL}}</td>
                     </tr>
                     <tr>
                         <td>间接胆红素</td>
                         <td>{{biochemical.IBIL}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>谷丙转氨酶</td>
+                        <td>谷丙转氨酶IU/L</td>
                         <td>{{biochemical.ALT}}</td>
+                        <td>{{standard.biochemical.ALT}}</td>
+                        <td>{{tips.biochemical.ALT}}</td>
                     </tr>
                     <tr>
-                        <td>谷草转氨酶</td>
+                        <td>谷草转氨酶IU/L</td>
                         <td>{{biochemical.AST}}</td>
+                        <td>{{standard.biochemical.AST}}</td>
+                        <td>{{tips.biochemical.AST}}</td>
                     </tr>
                     <tr>
-                        <td>尿素氨</td>
+                        <td>尿素氨mmol/L</td>
                         <td>{{biochemical.BUN}}</td>
+                        <td>{{standard.biochemical.BUN}}</td>
+                        <td>{{tips.biochemical.BUN}}</td>
                     </tr>
                     <tr>
-                        <td>肌酐</td>
+                        <td>肌酐umol/L</td>
                         <td>{{biochemical.CRE}}</td>
+                        <td>{{standard.biochemical.CRE}}</td>
+                        <td>{{tips.biochemical.CRE}}</td>
                     </tr>
                     <tr>
-                        <td>尿酸</td>
+                        <td>尿酸umol/L</td>
                         <td>{{biochemical.UA}}</td>
+                        <td>{{standard.biochemical.UA}}</td>
+                        <td>{{tips.biochemical.UA}}</td>
                     </tr>
                     <tr>
-                        <td>甘油三酯</td>
+                        <td>甘油三酯mmol/L</td>
                         <td>{{biochemical.TG}}</td>
+                        <td>{{standard.biochemical.TG}}</td>
+                        <td>{{tips.biochemical.TG}}</td>
                     </tr>
                     <tr>
-                        <td>总胆固醇</td>
+                        <td>总胆固醇mmol/L</td>
                         <td>{{biochemical.CHO}}</td>
+                        <td>{{standard.biochemical.CHO}}</td>
+                        <td>{{tips.biochemical.CHO}}</td>
                     </tr>
                     <tr>
-                        <td>高密度胆固醇</td>
+                        <td>高密度胆固醇mmol/L</td>
                         <td>{{biochemical.HDLC}}</td>
+                        <td>{{standard.biochemical.HDLC}}</td>
+                        <td>{{tips.biochemical.HDLC}}</td>
                     </tr>
                     <tr>
-                        <td>低密度胆固醇</td>
+                        <td>低密度胆固醇mmol/L</td>
                         <td>{{biochemical.LDLC}}</td>
+                        <td>{{standard.biochemical.LDLC}}</td>
+                        <td>{{tips.biochemical.LDLC}}</td>
                     </tr>
                     <tr>
-                        <td>葡萄糖</td>
+                        <td>葡萄糖mmol/L</td>
                         <td>{{biochemical.GLU}}</td>
+                        <td>{{standard.biochemical.GLU}}</td>
+                        <td>{{tips.biochemical.GLU}}</td>
                     </tr>
                     <tr>
-                        <td>碱性磷酸酶</td>
+                        <td>碱性磷酸酶U/L</td>
                         <td>{{biochemical.ALP}}</td>
+                        <td>{{standard.biochemical.ALP}}</td>
+                        <td>{{tips.biochemical.ALP}}</td>
                     </tr>
                     <tr>
                         <td>生化检查小结</td>
                         <td>{{biochemical.biochemicalSum}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -653,76 +701,112 @@
                     <tr>
                         <th>项目</th>
                         <th>内容</th>
+                        <th>参考值</th>
+                        <th>提示</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>白细胞</td>
+                        <td>白细胞10^9/L</td>
                         <td>{{bloodRoutine.WBC}}</td>
+                        <td>{{standard.bloodRoutine.WBC}}</td>
+                        <td>{{tips.bloodRoutine.WBC}}</td>
                     </tr>
                     <tr>
-                        <td>红细胞</td>
+                        <td>红细胞10^12/L</td>
                         <td>{{bloodRoutine.RBC}}</td>
+                        <td>{{standard.bloodRoutine.RBC}}</td>
+                        <td>{{tips.bloodRoutine.RBC}}</td>
                     </tr>
                     <tr>
-                        <td>血红蛋白</td>
+                        <td>血红蛋白g/L</td>
                         <td>{{bloodRoutine.HGB}}</td>
+                        <td>{{standard.bloodRoutine.HGB}}</td>
+                        <td>{{tips.bloodRoutine.HGB}}</td>
                     </tr>
                     <tr>
-                        <td>红细胞压积</td>
+                        <td>红细胞压积%</td>
                         <td>{{bloodRoutine.HCT}}</td>
+                        <td>{{standard.bloodRoutine.HCT}}</td>
+                        <td>{{tips.bloodRoutine.HCT}}</td>
                     </tr>
                     <tr>
-                        <td>血小板</td>
+                        <td>血小板10^9/L</td>
                         <td>{{bloodRoutine.PLT}}</td>
+                        <td>{{standard.bloodRoutine.PLT}}</td>
+                        <td>{{tips.bloodRoutine.PLT}}</td>
                     </tr>
                     <tr>
-                        <td>平均红细胞体积</td>
+                        <td>平均红细胞体积fL</td>
                         <td>{{bloodRoutine.MCV}}</td>
+                        <td>{{standard.bloodRoutine.MCV}}</td>
+                        <td>{{tips.bloodRoutine.MCV}}</td>
                     </tr>
                     <tr>
-                        <td>平均血红蛋白量</td>
+                        <td>平均血红蛋白量pg</td>
                         <td>{{bloodRoutine.MCH}}</td>
+                        <td>{{standard.bloodRoutine.MCH}}</td>
+                        <td>{{tips.bloodRoutine.MCH}}</td>
                     </tr>
                     <tr>
-                        <td>平均血红蛋白浓度</td>
+                        <td>平均血红蛋白浓度g/L</td>
                         <td>{{bloodRoutine.MCHC}}</td>
+                        <td>{{standard.bloodRoutine.MCHC}}</td>
+                        <td>{{tips.bloodRoutine.MCHC}}</td>
                     </tr>
                     <tr>
-                        <td>平均血小板体积</td>
+                        <td>平均血小板体积fL</td>
                         <td>{{bloodRoutine.MPV}}</td>
+                        <td>{{standard.bloodRoutine.MPV}}</td>
+                        <td>{{tips.bloodRoutine.MPV}}</td>
                     </tr>
                     <tr>
-                        <td>血小板分布宽度</td>
+                        <td>血小板分布宽度%</td>
                         <td>{{bloodRoutine.PDW}}</td>
+                        <td>{{standard.bloodRoutine.PDW}}</td>
+                        <td>{{tips.bloodRoutine.PDW}}</td>
                     </tr>
                     <tr>
-                        <td>淋巴细胞比率</td>
+                        <td>淋巴细胞比率%</td>
                         <td>{{bloodRoutine.LY1}}</td>
+                        <td>{{standard.bloodRoutine.LY1}}</td>
+                        <td>{{tips.bloodRoutine.LY1}}</td>
                     </tr>
                     <tr>
-                        <td>单核细胞比率</td>
+                        <td>单核细胞比率%</td>
                         <td>{{bloodRoutine.MO1}}</td>
+                        <td>{{standard.bloodRoutine.MO1}}</td>
+                        <td>{{tips.bloodRoutine.MO1}}</td>
                     </tr>
                     <tr>
-                        <td>中性细胞比率</td>
+                        <td>中性细胞比率%</td>
                         <td>{{bloodRoutine.GR1}}</td>
+                        <td>{{standard.bloodRoutine.GR1}}</td>
+                        <td>{{tips.bloodRoutine.GR1}}</td>
                     </tr>
                     <tr>
-                        <td>淋巴细胞</td>
+                        <td>淋巴细胞10^9/L</td>
                         <td>{{bloodRoutine.LY}}</td>
+                        <td>{{standard.bloodRoutine.LY}}</td>
+                        <td>{{tips.bloodRoutine.LY}}</td>
                     </tr>
                     <tr>
-                        <td>单核细胞</td>
+                        <td>单核细胞10^9/L</td>
                         <td>{{bloodRoutine.MO}}</td>
+                        <td>{{standard.bloodRoutine.MO}}</td>
+                        <td>{{tips.bloodRoutine.MO}}</td>
                     </tr>
                     <tr>
-                        <td>中性细胞</td>
+                        <td>中性细胞10^9/L</td>
                         <td>{{bloodRoutine.GR}}</td>
+                        <td>{{standard.bloodRoutine.GR}}</td>
+                        <td>{{tips.bloodRoutine.GR}}</td>
                     </tr>
                     <tr>
                         <td>血常规小结</td>
                         <td>{{bloodRoutine.bloodRoutineSum}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -756,52 +840,76 @@
                     <tr>
                         <th>项目</th>
                         <th>内容</th>
+                        <th>参考值</th>
+                        <th>提示</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>白细胞定性</td>
                         <td>{{urineRoutine.LEU}}</td>
+                        <td>{{standard.urineRoutine.LEU}}</td>
+                        <td>{{tips.urineRoutine.LEU}}</td>
                     </tr>
                     <tr>
                         <td>酮体定性</td>
                         <td>{{urineRoutine.KET}}</td>
+                        <td>{{standard.urineRoutine.KET}}</td>
+                        <td>{{tips.urineRoutine.KET}}</td>
                     </tr>
                     <tr>
                         <td>尿胆原定性</td>
                         <td>{{urineRoutine.URO}}</td>
+                        <td>{{standard.urineRoutine.URO}}</td>
+                        <td>{{tips.urineRoutine.URO}}</td>
                     </tr>
                     <tr>
                         <td>胆红素定性</td>
                         <td>{{urineRoutine.BIL}}</td>
+                        <td>{{standard.urineRoutine.BIL}}</td>
+                        <td>{{tips.urineRoutine.BIL}}</td>
                     </tr>
                     <tr>
                         <td>尿比重</td>
                         <td>{{urineRoutine.SG}}</td>
+                        <td>{{standard.urineRoutine.SG}}</td>
+                        <td>{{tips.urineRoutine.SG}}</td>
                     </tr>
                     <tr>
                         <td>红细胞定性</td>
                         <td>{{urineRoutine.BLD}}</td>
+                        <td>{{standard.urineRoutine.BLD}}</td>
+                        <td>{{tips.urineRoutine.BLD}}</td>
                     </tr>
                     <tr>
                         <td>尿蛋白定性</td>
                         <td>{{urineRoutine.PRO}}</td>
+                        <td>{{standard.urineRoutine.PRO}}</td>
+                        <td>{{tips.urineRoutine.PRO}}</td>
                     </tr>
                     <tr>
                         <td>尿糖定性</td>
                         <td>{{urineRoutine.CLU}}</td>
+                        <td>{{standard.urineRoutine.CLU}}</td>
+                        <td>{{tips.urineRoutine.CLU}}</td>
                     </tr>
                     <tr>
                         <td>亚硝酸盐定性</td>
                         <td>{{urineRoutine.NIT}}</td>
+                        <td>{{standard.urineRoutine.NIT}}</td>
+                        <td>{{tips.urineRoutine.NIT}}</td>
                     </tr>
                     <tr>
                         <td>PH值</td>
                         <td>{{urineRoutine.PH}}</td>
+                        <td>{{standard.urineRoutine.PH}}</td>
+                        <td>{{tips.urineRoutine.PH}}</td>
                     </tr>
                     <tr>
                         <td>尿常规小结</td>
                         <td>{{urineRoutine.urineRoutineSum}}</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -1252,7 +1360,8 @@
                                    placeholder="请设置右乳所见">
                         </div>
                     </div>
-                    <div class="form-group" ng-class="{'has-error':error.revise.infraredMammogram.infraredMammogramSum}">
+                    <div class="form-group"
+                         ng-class="{'has-error':error.revise.infraredMammogram.infraredMammogramSum}">
                         <label class="col-sm-4 control-label" for="revise_infraredMammogramSum">红外线乳透小结：</label>
                         <div class="col-sm-6">
                             <input class="form-control" id="revise_infraredMammogramSum"
@@ -2861,6 +2970,32 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="addUrineRoutine()">提交</button>
                 <button type="button" class="btn btn-default mb-add-modal" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="weightChart"
+     tabindex="-1" role="dialog"
+     aria-labelledby="weightChartLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="weightChartLabel">体重趋势</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-chart">
+                            <div id="ageChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>
