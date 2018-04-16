@@ -19,4 +19,6 @@ interface IRecording
     public function deleteRecording($recordingId, $userId);
 
     public function reviseRecording($recording, $recordingId);
+
+    public function getChartItems($userId, $name, $gender);
 }
