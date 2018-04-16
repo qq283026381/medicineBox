@@ -269,7 +269,7 @@ medicineBox.controller('newRecordingCtrl', ['$scope', '$http', 'toaster', functi
                     toaster.pop('获取体检记录失败，请联系管理员');
                 }
             });
-        }
+        };
         getRecording();
 
         // TODO 对表格输入部分的限制
