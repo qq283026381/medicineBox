@@ -24,23 +24,41 @@ if ($tools->checkData($data)) {
     $opt['accountsid'] = $sid;
     $opt['token'] = $token;
     $ucpass = new Ucpaas($opt);
+    $code = getCode();
     switch ($data['method']) {
         case 'register':
             {
                 $templateid = '309359';
-                $code = getCode();
                 $param = $code;
                 $mobile = $data['phone'];
                 $uid = $id;
-                $response = json_decode($ucpass->SendSms($appid, $templateid, $param, $mobile, $uid));
-                $smsResult = getResult($response);
-                $result['result'] = $smsResult['msg'] === 'OK';
                 $mbsco = base64_encode(json_encode(array('code' => $code, 'uid' => $uid)));
-                setcookie('mbsco', $mbsco, time()+180);
-                echo $tools->setData($result);
+                setcookie('mbsco', $mbsco, time() + 180);
                 break;
             }
+        case 'forget':
+            {
+                $message = (array)json_decode(base64_decode($_COOKIE['mbfor']));
+                if (isset($message['id']) && isset($message['name'])) {
+                    $templateid = '309364';
+                    $param = $message['name'] . ',' . $code;
+                    $mobile = $data['phone'];
+                    $uid = $message['id'];
+                    $message['code'] = $code;
+                    $mbfor = base64_encode(json_encode($message));
+                    setcookie('mbfor', $mbfor, time() + 180);
+                } else {
+                    $result['result'] = false;
+                }
+                break;
+            }
+        default:
+            $result['result'] = false;
     }
+    $response = json_decode($ucpass->SendSms($appid, $templateid, $param, $mobile, $uid));
+    $smsResult = getResult($response);
+    $result['result'] = $smsResult['msg'] === 'OK';
+    echo $tools->setData($result);
 }
 
 function getCode()
