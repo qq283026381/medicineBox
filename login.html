@@ -187,7 +187,10 @@
                        ng-click="initRegister()"
                        data-toggle="modal"
                        data-target="#register">立即注册</a>
-                    <a class="forget">忘记密码</a>
+                    <a class="forget"
+                       ng-click="initForget()"
+                       data-toggle="modal"
+                       data-target="#forget">忘记密码</a>
                 </div>
             </form>
         </div>
@@ -282,6 +285,80 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-click="checkRegister()">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="forget"
+     tabindex="-1" role="dialog"
+     aria-labelledby="forgetModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="forgetModalLabel">找回密码</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-class="{'has-error':forget.error.phone}">
+                        <label class="col-sm-4 control-label" for="forgetPhone">手机号：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetPhone"
+                                   ng-model="forget.phone" title="手机号"
+                                   placeholder="请输入注册手机号">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="forget.error.phoneFormat">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-forget-tip">* 请输入11位有效手机号</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':forget.error.pwd}">
+                        <label class="col-sm-4 control-label" for="forgetPwd">设置密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetPwd"
+                                   ng-model="forget.pwd" title="密码"
+                                   type="password" placeholder="请设置密码">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':forget.error.pwdRepeat}">
+                        <label class="col-sm-4 control-label" for="forgetPwdRepeat">确认密码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetPwdRepeat"
+                                   ng-model="forget.pwdRepeat" title="密码"
+                                   type="password" placeholder="请再次输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="forget.error.correct">
+                        <div class="col-sm-offset-4 col-sm-6">
+                            <span class="mb-forget-tip">* 两次输入密码不一致</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':forget.error.code}">
+                        <label class="col-sm-4 control-label" for="forgetCode">验证码：</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" id="forgetCode"
+                                   ng-model="forget.code" title="验证码"
+                                   placeholder="请输入手机验证码">
+                            <button class="mb-span-inline btn btn-default"
+                                    ng-click="getForgetCode($event)"
+                                    ng-disabled="codeBtn"
+                                    ng-bind="codeInfo"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button ng-show="!forget.error.correct"
+                        type="button"
+                        class="btn btn-primary"
+                        ng-click="checkForget()">
+                    提交
+                </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
