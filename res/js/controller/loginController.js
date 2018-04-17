@@ -25,6 +25,20 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             nameFormat: false
         }
     };
+    $scope.forget = {
+        phone: '',
+        code: '',
+        pwd: '',
+        pwdRepeat: '',
+        error: {
+            phone: false,
+            code: false,
+            correct: false,
+            pwdRepeat: false,
+            pwd: false,
+            phoneFormat: false
+        }
+    };
     $scope.codeInfo = '获取验证码';
     $scope.codeBtn = false;
     loginService.checkLoginStatus();
@@ -98,7 +112,6 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
                 $scope.register.error.phoneFormat = false;
                 $scope.register.error.phone = false;
             }
-
         }
     });
     /***
@@ -219,7 +232,6 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             emailFormatWatcher();
             phoneFormatWatcher();
             nameFormatWatcher();
-
             $scope.register.pwd = md5($scope.register.pwd);
             $scope.register.pwdRepeat = md5($scope.register.pwdRepeat);
             console.log($scope.register);
@@ -295,4 +307,157 @@ medicineBox.controller('loginCtrl', ['$scope', '$http', 'toaster', '$interval', 
             }
         };
     };
+    /***
+     * 初始化忘记密码信息
+     */
+    $scope.initForget = function () {
+        console.log($scope.forget);
+        $scope.forget = {
+            phone: '',
+            code: '',
+            pwd: '',
+            pwdRepeat: '',
+            error: {
+                phone: false,
+                code: false,
+                correct: false,
+                pwdRepeat: false,
+                pwd: false,
+                phoneFormat: false
+            }
+        };
+    };
+    $scope.getForgetCode = function ($event) {
+        $event.preventDefault();
+        if ($scope.forget.phone !== '' && !angular.isUndefined($scope.forget.phone)) {
+            var deadline = 30;
+            $scope.codeBtn = true;
+            $scope.codeInfo = deadline + 's后重新获取';
+            $interval(function () {
+                if (deadline === 1) {
+                    $scope.codeInfo = '获取验证码';
+                    $scope.codeBtn = false;
+                } else {
+                    $scope.codeInfo = --deadline + 's后重新获取';
+                }
+            }, 1000, deadline);
+            $http.post('CheckUser.do', {'phone': $scope.forget.phone}).then(function (t) {
+                if (t.data.result) {
+                    $http.post('SendMessage.do', {'method': 'forget', 'phone': $scope.forget.phone}).then(function (t) {
+                        if (!t.data.result) {
+                            toaster.pop('error', '', '获取验证码失败');
+                        }
+                    })
+                } else {
+                    toaster.pop('error', '', '无此用户');
+                }
+            });
+
+        } else {
+            $scope.forget.error.phone = true;
+            toaster.pop('error', '', '请先输入手机号');
+        }
+    };
+    /***
+     * 监听用户输入忘记密码的手机号是否合法
+     */
+    var phoneForgetFormatWatcher = $scope.$watch('forget.phone', function (newValue) {
+        if ($scope.forget.phone !== '') {
+            if (newValue.length !== 11) {
+                $scope.forget.error.phoneFormat = true;
+                $scope.forget.error.phone = true;
+            } else {
+                $scope.forget.error.phoneFormat = false;
+                $scope.forget.error.phone = false;
+            }
+        }
+    });
+    /***
+     * 监听用户输入忘记密码中的密码和确认密码是否一致
+     */
+    var pwdRepeatForgetWatcher = $scope.$watch('forget.pwdRepeat', function (newValue) {
+        if ($scope.forget.pwd !== '')
+            if (newValue !== $scope.forget.pwd) {
+                $scope.forget.error.pwdRepeat = true;
+                $scope.forget.error.correct = true;
+            } else {
+                $scope.forget.error.pwdRepeat = false;
+                $scope.forget.error.correct = false;
+            }
+    });
+    $scope.checkForget = function () {
+        /***
+         * 监听用户是否输入忘记密码的手机号
+         * 当用户输入手机号后，取消监听
+         */
+        var registerForgetPhoneWatcher = $scope.$watch('forget.phone', function (phone) {
+            if (phone === '') {
+                $scope.forget.error.phone = true;
+                toaster.pop('error', '', '请输入手机号');
+            } else {
+                $scope.forget.error.phone = false;
+                registerForgetPhoneWatcher();
+            }
+        });
+        /***
+         * 监听用户是否输入忘记密码的验证码
+         * 当用户输入验证码后，取消监听
+         */
+        var registerForgetCodeWatcher = $scope.$watch('forget.code', function (code) {
+            if (code === '') {
+                $scope.forget.error.code = true;
+                toaster.pop('error', '', '请输入验证码');
+            } else {
+                $scope.forget.error.code = false;
+                registerForgetCodeWatcher();
+            }
+        });
+        /***
+         * 监听用户是否输入设置密码
+         * 当用户输入设置密码后，取消监听
+         */
+        var registerForgetPwdWatcher = $scope.$watch('forget.pwd', function (pwd) {
+            if (pwd === '') {
+                $scope.forget.error.pwd = true;
+                toaster.pop('error', '', '请输入密码');
+            } else {
+                $scope.forget.error.pwd = false;
+                registerForgetPwdWatcher();
+            }
+        });
+        /***
+         * 监听用户是否输入确认密码
+         * 当用户输入确认密码后，取消监听
+         */
+        var registerForgetPwdRepeatWatcher = $scope.$watch('forget.pwdRepeat', function (pwdRepeat) {
+            if (pwdRepeat === '') {
+                $scope.forget.error.pwdRepeat = true;
+                toaster.pop('error', '', '请确认密码');
+            } else {
+                if (!$scope.forget.error.correct) {
+                    $scope.forget.error.pwdRepeat = false;
+                }
+                registerForgetPwdRepeatWatcher();
+            }
+        });
+        if (!$scope.forget.error.phone &&
+            !$scope.forget.error.pwd &&
+            !$scope.forget.error.pwdRepeat &&
+            !$scope.forget.error.code &&
+            !$scope.forget.error.correct &&
+            !$scope.forget.error.phoneFormat) {
+            phoneForgetFormatWatcher();
+            pwdRepeatForgetWatcher();
+            $scope.forget.pwd = md5($scope.forget.pwd);
+            $scope.forget.pwdRepeat = md5($scope.forget.pwdRepeat);
+            $http.post('Forget.do', $scope.forget).then(function (t) {
+                if (t.data.result) {
+                    toaster.pop('success', '', '修改密码成功');
+                    $('#forget').modal('hide');
+                } else {
+                    toaster.pop('error', '', '修改密码失败');
+                }
+            })
+        }
+    }
 }]);
