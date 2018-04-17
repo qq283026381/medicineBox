@@ -16,7 +16,7 @@ if ($message['uid'] === 'new' && isset($message['code'])) {
     if ($tools->checkData($data)) {
         if ($code == $data['code']) {
             $register = new LoginImpl();
-            $check = $register->checkUser($data['name']);
+            $check = $register->checkUser($data['name'],$data['phone']);
             if ($check->num_rows > 0) {
                 setcookie('mbsco', '', time() - 3600);
                 echo $tools->setData(array('result' => false, 'data' => '用户名已经存在'));
