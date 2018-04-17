@@ -3,7 +3,8 @@
     margin: 0;
     padding: 0;
 }
-.mb-span-inline{
+
+.mb-span-inline {
     position: absolute;
     top: 0;
     right: 15px;
@@ -14,9 +15,11 @@
     background-color: #f2f2f2;
     line-height: 2.42857143;
 }
-.mb-span-inline[disabled]{
+
+.mb-span-inline[disabled] {
     background-color: #fff;
 }
-.mb-register-tip{
+
+.mb-register-tip, .mb-forget-tip {
     color: red;
 }
