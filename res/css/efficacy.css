@@ -3,3 +3,8 @@
     font-size: 2rem;
     text-align: center;
 }
+
+.mb-efficacy-img {
+    width: 100%;
+    display: block;
+}
