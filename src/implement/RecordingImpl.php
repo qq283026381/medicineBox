@@ -35,7 +35,7 @@ class RecordingImpl implements IRecording
 
     public function getAllRecordings($userId)
     {
-        $query = 'SELECT * FROM recording WHERE user_id=?';
+        $query = 'SELECT * FROM recording WHERE user_id=? ORDER BY time';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('i', $userId);
         $stmt->execute();
@@ -82,5 +82,16 @@ class RecordingImpl implements IRecording
         $result = $stmt->execute();
         $this->mysql->closeConnection();
         return array('result' => $result);
+    }
+
+    public function getChartItems($userId, $name, $gender)
+    {
+        $query = 'SELECT height,weight,BMI,blood_pressure,time FROM internal i LEFT JOIN recording r ON i.user_id=r.user_id AND i.internal_id=r.internal_id WHERE r.user_id=? AND r.name=? AND r.gender=? ORDER BY r.time';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param('iss', $userId, $name, $gender);
+        $result = $stmt->execute();
+        $source = $stmt->get_result();
+        $this->mysql->closeConnection();
+        return array('result' => $result, 'source' => $source);
     }
 }
