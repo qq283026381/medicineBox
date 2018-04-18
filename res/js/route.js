@@ -15,7 +15,8 @@ medicineBox.config(['$routeProvider', '$locationProvider', function ($routeProvi
             controller: 'diagnosisCtrl'
         })
         .when('/efficacy', {
-            templateUrl: 'efficacy.page'
+            templateUrl: 'efficacy.page',
+            controller: 'efficacyCtrl'
         })
         .when('/recording', {
             templateUrl: 'recording.page',
