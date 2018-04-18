@@ -1,4 +1,5 @@
-medicineBox.controller('searchRecordingCtrl', ['$scope', '$http', 'toaster', '$filter', function ($scope, $http, toaster, $filter) {
+medicineBox.controller('searchRecordingCtrl', ['$scope', '$http', 'toaster', '$filter', 'loginService', function ($scope, $http, toaster, $filter, loginService) {
+    loginService.checkTime();
     var id = sessionStorage.getItem('searchItem');
     if (!id) {
         setTimeout(function () {

@@ -1,4 +1,5 @@
-medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', function ($scope, $http, $filter, toaster) {
+medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', 'loginService', function ($scope, $http, $filter, toaster, loginService) {
+    loginService.checkTime();
     /***
      * 编辑药品模态框中日期的插件配置
      */
@@ -105,7 +106,7 @@ medicineBox.controller('manageCtrl', ['$scope', '$http', '$filter', 'toaster', f
         } else if (targetArr[0] === currentArr[0]) {
             if (targetArr[1] <= currentArr[1]) {
                 return 'expired';
-            } else if (parseInt(targetArr[1]) === parseInt(currentArr[1])+ 1) {
+            } else if (parseInt(targetArr[1]) === parseInt(currentArr[1]) + 1) {
                 return 'warning';
             } else {
                 return 'normal';

@@ -1,4 +1,5 @@
-medicineBox.controller('diagnosisCtrl', ['$scope', '$http', 'toaster', function ($scope, $http, toaster) {
+medicineBox.controller('diagnosisCtrl', ['$scope', '$http', 'toaster','loginService', function ($scope, $http, toaster,loginService) {
+    loginService.checkTime();
     $scope.diagnosis = {
         input: []
     };

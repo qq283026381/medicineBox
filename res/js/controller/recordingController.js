@@ -1,4 +1,5 @@
-medicineBox.controller('recordingCtrl', ['$scope', '$http', '$filter', 'toaster', function ($scope, $http, $filter, toaster) {
+medicineBox.controller('recordingCtrl', ['$scope', '$http', '$filter', 'toaster', 'loginService', function ($scope, $http, $filter, toaster, loginService) {
+    loginService.checkTime();
     $scope.add = {
         name: '',
         gender: '',
@@ -75,15 +76,15 @@ medicineBox.controller('recordingCtrl', ['$scope', '$http', '$filter', 'toaster'
     $scope.setSearchItem = function (item) {
         sessionStorage.setItem('searchItem', item.id);
     };
-    $scope.deleteRecording=function (index,id) {
+    $scope.deleteRecording = function (index, id) {
         var affirmance = confirm('确定删除序号为' + index + '的体检记录吗？');
         if (affirmance) {
-            $http.post('DeleteRecording.do',{'id':id}).then(function (t) {
-                if(t.data.result){
-                    toaster.pop('success','','删除成功');
+            $http.post('DeleteRecording.do', {'id': id}).then(function (t) {
+                if (t.data.result) {
+                    toaster.pop('success', '', '删除成功');
                     getRecordings();
-                }else{
-                    toaster.pop('error','','删除失败，请检查网络');
+                } else {
+                    toaster.pop('error', '', '删除失败，请检查网络');
                 }
             })
         }

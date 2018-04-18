@@ -1,4 +1,5 @@
-medicineBox.controller('newRecordingCtrl', ['$scope', '$http', 'toaster', function ($scope, $http, toaster) {
+medicineBox.controller('newRecordingCtrl', ['$scope', '$http', 'toaster','loginService', function ($scope, $http, toaster,loginService) {
+    loginService.checkTime();
     var number = sessionStorage.getItem('newRecord');
     if (!number) {
         setTimeout(function () {
